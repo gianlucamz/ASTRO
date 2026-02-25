@@ -1,0 +1,11 @@
+ASTRO
+- estilo minimalista
+- react/tailwhind
+
+- modo claro/escuro
+- carrinho interativo
+- lista de desejos
+- login e cadastro com banco de dados
+- mobile?????
+- carrossel de produtos
+- simular parcerias com marcas que serão vendidas no site
