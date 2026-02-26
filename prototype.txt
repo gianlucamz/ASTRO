@@ -9,3 +9,4 @@ ASTRO
 - mobile?????
 - carrossel de produtos
 - simular parcerias com marcas que serão vendidas no site
+- barra lateral
