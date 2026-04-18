@@ -5,6 +5,7 @@ import "./index.css";
 
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
+import Sidebar from "./components/Sidebar";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById("root")).render(
           path="/"
           element={
             <MainLayout>
+              <Sidebar />
               <Home />
             </MainLayout>
           }

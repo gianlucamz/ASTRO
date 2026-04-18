@@ -40,7 +40,7 @@ export default function AstroSidebar() {
                   <li key={item}>
                     <button
                       onClick={() => setActiveItem(item)}
-                      className={`w-full text-left text-sm px-2 py-1 rounded-md transition-colors ${
+                      className={`w-full text-left text-sm px-2 py-1 rounded-md transition-colors cursor-pointer ${
                         activeItem === item
                           ? " text-gray-700 font-medium"
                           : "text-gray-800 hover:bg-gray-100 hover:text-gray-900"
@@ -62,7 +62,7 @@ export default function AstroSidebar() {
           <p className="text-xs text-black mb-3 font-inter font-semibold">
             Entre em contato com nosso suporte especializado!
           </p>
-          <button className="w-full bg-purple-900 text-white text-sm font-semibold py-3 rounded-3xl transition-colors">
+          <button className="w-full bg-purple-900 text-white text-sm font-semibold py-3 rounded-3xl cursor-pointer">
             Saiba Mais
           </button>
         </div>
