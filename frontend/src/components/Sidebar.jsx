@@ -26,9 +26,8 @@ export default function AstroSidebar() {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0">
+    <div className="flex bg-gray-100">
+      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0 sticky top-0 h-screen">
         <nav className="flex flex-col gap-6">
           {menuSections.map((section) => (
             <div key={section.title} className="border-b border-gray-400 pb-4">

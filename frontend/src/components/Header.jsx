@@ -2,11 +2,15 @@ import logo from "../assets/astroLogoHeader.png";
 import title from "../assets/astroTitle.png";
 import Icon from "./Icon";
 
-function Header() {
+export default function Header() {
   return (
     <header
       className="w-full bg-white relative z-10"
-      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.18)" }}
+      style={{
+        boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+        position: "sticky",
+        top: 0,
+      }}
     >
       <div className="flex items-center">
         {/* Seção da esquerda (logo, search bar) */}
@@ -56,5 +60,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
