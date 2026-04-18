@@ -18,6 +18,7 @@ model User {
   addresses Address[]
   orders    Order[]
   cart      Cart?
+  wishlist Wishlist?
 }
 
 model Address {
@@ -58,6 +59,7 @@ model Product {
 
   orderItems OrderItem[]
   cartItems  CartItem[]
+  wishlistItems WishlistItem[]
 }
 
 model Order {
@@ -104,4 +106,22 @@ model CartItem {
 
   productId String
   product   Product @relation(fields: [productId], references: [id])
+}
+
+model Wishlist {
+  id  String @id @default(cuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
+
+  items WishlistItem[]
+}
+
+model WishlistItem {
+  id String @id @default(cuid())
+
+  wishlistId String
+  wishlist Wishlist @relation(fields: [wishlistId], references: [id])
+
+  productId String
+  product Product @relation(fields: [productId], references: [id])
 }
