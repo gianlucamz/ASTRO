@@ -67,10 +67,6 @@ export default function AstroSidebar() {
           </button>
         </div>
       </aside>
-
-      <main className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-        Conteúdo da página aqui
-      </main>
     </div>
   );
 }

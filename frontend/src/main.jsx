@@ -15,7 +15,6 @@ createRoot(document.getElementById("root")).render(
           path="/"
           element={
             <MainLayout>
-              <Sidebar />
               <Home />
             </MainLayout>
           }
