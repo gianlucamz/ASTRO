@@ -1,12 +1,12 @@
 import Header from "../components/Header";
 // import Footer from "../components/Footer";
-// import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 
 export default function MainLayout({ children }) {
   return (
     <>
       <Header />
-      {/* <Sidebar /> */}
+      <Sidebar />
       <main>{children}</main>
       {/* <Footer /> */}
     </>
