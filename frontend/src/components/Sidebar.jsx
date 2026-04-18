@@ -26,9 +26,8 @@ export default function AstroSidebar() {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0">
+    <div className="flex bg-gray-100">
+      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0 sticky top-0 h-screen">
         <nav className="flex flex-col gap-6">
           {menuSections.map((section) => (
             <div key={section.title} className="border-b border-gray-400 pb-4">
@@ -40,7 +39,7 @@ export default function AstroSidebar() {
                   <li key={item}>
                     <button
                       onClick={() => setActiveItem(item)}
-                      className={`w-full text-left text-sm px-2 py-1 rounded-md transition-colors ${
+                      className={`w-full text-left text-sm px-2 py-1 rounded-md transition-colors cursor-pointer ${
                         activeItem === item
                           ? " text-gray-700 font-medium"
                           : "text-gray-800 hover:bg-gray-100 hover:text-gray-900"
@@ -62,15 +61,11 @@ export default function AstroSidebar() {
           <p className="text-xs text-black mb-3 font-inter font-semibold">
             Entre em contato com nosso suporte especializado!
           </p>
-          <button className="w-full bg-purple-900 text-white text-sm font-semibold py-3 rounded-3xl transition-colors">
+          <button className="w-full bg-purple-900 text-white text-sm font-semibold py-3 rounded-3xl cursor-pointer">
             Saiba Mais
           </button>
         </div>
       </aside>
-
-      <main className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-        Conteúdo da página aqui
-      </main>
     </div>
   );
 }
