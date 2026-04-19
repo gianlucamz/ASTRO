@@ -1,6 +1,7 @@
 import Hero from "../components/Hero";
 import Sidebar from "../components/Sidebar";
 import ProductRow from "../components/ProductRow";
+import BrandRow from "../components/BrandRow";
 
 export default function Home() {
   return (
@@ -10,6 +11,13 @@ export default function Home() {
         <Hero />
         <ProductRow title="Destaques" />
         <ProductRow title="Promoções" />
+        <BrandRow />
+        <ProductRow title="Hardware" />
+        <ProductRow title="Periféricos" />
+        <ProductRow title="Computadores" />
+        <ProductRow title="Smartphones" />
+        <ProductRow title="Games" />
+        <ProductRow title="Diversos" />
       </main>
     </div>
   );
