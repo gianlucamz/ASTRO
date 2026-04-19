@@ -11,7 +11,9 @@ export default function Footer() {
     >
       <div className="flex items-start gap-16">
         <div className="flex flex-col gap-4 px-6">
-          <img src={logo} alt="ASTRO" className="h-14 w-auto" />
+          <a href="#">
+            <img src={logo} alt="ASTRO" className="h-14 w-auto" />
+          </a>
           <div className="flex gap-1">
             <p className="text-sm text-black">Siga-nos</p>
             <div className="flex gap-1">
