@@ -32,11 +32,11 @@ export default function ProductRow({ title }) {
 
   return (
     <div className="bg-white rounded-xl p-4 mb-4">
-      <div className="flex items-center  justify-between mb-4">
-        <h2 className="text-base font-bold text-gray-900">{title}</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-900">{title}</h2>
       </div>
       <div className="relative flex items-center">
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide">
           {products.map((product) => (
             <ProductCard
               key={product.id}
@@ -46,8 +46,8 @@ export default function ProductRow({ title }) {
             />
           ))}
         </div>
-        <button className="absolute right-0 bg-white shadow rounded-full p-1 ml-2">
-          <IoChevronForward size={20} className="text-gray-500" />
+        <button className="absolute right-6 bg-white shadow rounded-full p-2 ml-2 cursor-pointer">
+          <IoChevronForward size={22} className="text-gray-600" />
         </button>
       </div>
     </div>

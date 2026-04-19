@@ -15,7 +15,11 @@ export default function Header() {
       <div className="flex items-center">
         {/* Seção da esquerda (logo, search bar) */}
         <div className="p-1 ml-14 flex gap-14 items-center">
-          <img src={logo} className="w-20 max-w-none cursor-pointer" />
+          <img
+            src={logo}
+            className="w-20 max-w-none cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          />
 
           <div className="relative flex-1 max-w-100">
             <input
@@ -35,6 +39,7 @@ export default function Header() {
         <img
           src={title}
           className="h-14 absolute left-1/2 -translate-x-1/2 cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         />
 
         {/* Seção da direita (contato, cep, carrinho, modo claro/escuro, conta) */}
