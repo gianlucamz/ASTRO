@@ -1,0 +1,409 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: astro
+meta:
+  id: wrk_a43120855da342f9b6fa5e1fed37d4ec
+  created: 1775712562941
+  modified: 1775712562941
+  description: ""
+collection:
+  - name: Auth
+    meta:
+      id: fld_1607b6b3dec94a4eacc2adced8c58b83
+      created: 1775793384863
+      modified: 1775793398177
+      sortKey: -1775793384863
+      description: ""
+    children:
+      - url: http://localhost:3333/auth/register
+        name: register
+        meta:
+          id: req_b1aba2fe73ab40148f67e91d9095b4af
+          created: 1775712572268
+          modified: 1775793401031
+          isPrivate: false
+          description: ""
+          sortKey: -1775793394653
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Gianluca Moreno Zocarato",
+            	"email": "teste@email.com",
+            	"password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3333/auth/login
+        name: login
+        meta:
+          id: req_613c03d471314c7f9d54829081170b0d
+          created: 1775712679215
+          modified: 1775793394772
+          isPrivate: false
+          description: ""
+          sortKey: -1775793394753
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "teste@email.com",
+            	"password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Categories
+    meta:
+      id: fld_b78dd6df10e843c78bb58362c26b82bc
+      created: 1775793452139
+      modified: 1775793700191
+      sortKey: -1775793274829
+      description: ""
+    children:
+      - url: http://localhost:3333/categories
+        name: POST categories
+        meta:
+          id: req_792b84342eef4e19b9ce3b2bf131c437
+          created: 1775793065781
+          modified: 1775793461113
+          isPrivate: false
+          description: ""
+          sortKey: -1775793459885
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Periféricos",
+              "slug": "perifericos"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3333/categories
+        name: GET categories
+        meta:
+          id: req_e73db9cdde3e44d2b8aaac7a61c91ff3
+          created: 1775793333533
+          modified: 1775793459806
+          isPrivate: false
+          description: ""
+          sortKey: -1775793459785
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Periféricos",
+              "slug": "perifericos"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Products
+    meta:
+      id: fld_a33e8335c74e4dbeb71d12772353df45
+      created: 1775793471329
+      modified: 1775793475139
+      sortKey: -1775752872298
+      description: ""
+    children:
+      - url: http://localhost:3333/products
+        name: POST product
+        meta:
+          id: req_9ddfbc105c664f799f2df08c664fb3bb
+          created: 1775793164795
+          modified: 1775793476429
+          isPrivate: false
+          description: ""
+          sortKey: -1775793476411
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "name": "Teclado Mecânico HyperX",
+              "description": "Teclado mecânico com switches red, ideal para jogos",
+              "price": 349.90,
+              "stock": 15,
+              "slug": "teclado-mecanico-hyperx",
+              "categoryId": "cmnsddfnp0000tzwsq2s2jtpu"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3333/products
+        name: GET product
+        meta:
+          id: req_c9ee6db0a77047bda8f32807f5d37c67
+          created: 1775793308129
+          modified: 1775793478296
+          isPrivate: false
+          description: ""
+          sortKey: -1775793476311
+        method: GET
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "name": "Teclado Mecânico HyperX",
+              "description": "Teclado mecânico com switches red, ideal para jogos",
+              "price": 349.90,
+              "stock": 15,
+              "slug": "teclado-mecanico-hyperx",
+              "categoryId": "cmnsddfnp0000tzwsq2s2jtpu"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cart
+    meta:
+      id: fld_f5a266a22d324e7880ba6a7f12635678
+      created: 1775793489716
+      modified: 1775793498143
+      sortKey: -1775773073563.5
+      description: ""
+    children:
+      - url: http://localhost:3333/cart/items
+        name: POST cart
+        meta:
+          id: req_5ad8d0f70d594006ae3597088d932c08
+          created: 1775793595601
+          modified: 1775793698553
+          isPrivate: false
+          description: ""
+          sortKey: -1775793697213
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "productId": "cmnsdh31g0003tzxgwvidf9ge",
+              "quantity": 2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3333/cart
+        name: GET cart
+        meta:
+          id: req_8dd98d590d1649bb98a61bc71f823d40
+          created: 1775793666752
+          modified: 1775793697132
+          isPrivate: false
+          description: ""
+          sortKey: -1775793697113
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: orderController
+    meta:
+      id: fld_e9bc4aefdbf34190866cedf0825729cf
+      created: 1775793998858
+      modified: 1775793998858
+      sortKey: -1775793998858
+      description: ""
+    children:
+      - url: http://localhost:3333/addresses
+        name: addresses
+        meta:
+          id: req_104a7008be024d36b23b99c06ee0ce36
+          created: 1775793813482
+          modified: 1775794003785
+          isPrivate: false
+          description: ""
+          sortKey: -1775794002800
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "street": "Rua das Flores",
+              "number": "123",
+              "complement": "Apto 1",
+              "city": "Caraguatatuba",
+              "state": "SP",
+              "zipCode": "11660-000"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3333/orders
+        name: orders
+        meta:
+          id: req_c297064e877e4933b622f9b7b1291442
+          created: 1775793901624
+          modified: 1775794002721
+          isPrivate: false
+          description: ""
+          sortKey: -1775794002700
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "addressId": "cmnsdtztd0001tzls8dw0i4lq"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbnIxZ3EzejAwMDB0em13c2VuODJmdDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU3OTIwOTEsImV4cCI6MTc3NjM5Njg5MX0.bfoPDwLMYgQr_CT48gKGp73INqKmfcYruAmCqbg4FbQ
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_23cb71a595c0d691e4ba213f260dcb6d82962dfc
+    created: 1775712562946
+    modified: 1775712562946
+environments:
+  name: Base Environment
+  meta:
+    id: env_23cb71a595c0d691e4ba213f260dcb6d82962dfc
+    created: 1775712562944
+    modified: 1775712562944
+    isPrivate: false
