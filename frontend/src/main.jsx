@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Sidebar from "./components/Sidebar";
 import Cart from "./pages/Cart";
+import Buycard from "./pages/Buycard";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -33,6 +34,22 @@ createRoot(document.getElementById("root")).render(
           element={
             <MainLayout>
               <Cart />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/product"
+          element={
+            <MainLayout>
+              <Buycard />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/produto"
+          element={
+            <MainLayout>
+              <Buycard />
             </MainLayout>
           }
         />
