@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ProductCard({ image, name, price }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-white rounded-lg p-3 min-w-[230px] max-w-[230px] cursor-pointer shadow-md hover:shadow-xl transition-shadow">
+    <div className="bg-white rounded-lg p-3 min-w-[230px] max-w-[230px] cursor-pointer shadow-md hover:shadow-xl transition-shadow" onClick={() => navigate("/product")}>
       <div className="bg-gray-50 rounded-lg mb-3 flex items-center justify-center h-[190px]">
         <img
           src={image}

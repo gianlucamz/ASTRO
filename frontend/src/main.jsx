@@ -8,10 +8,12 @@ import Home from "./pages/Home";
 import Sidebar from "./components/Sidebar";
 import Cart from "./pages/Cart";
 import Buycard from "./pages/Buycard";
+import ScrollToTop from "./components/ScrollToTop";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"

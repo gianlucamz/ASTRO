@@ -4,11 +4,16 @@ import {
   FaShoppingCart,
   FaThumbsUp,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+
+
 import AMD from "../assets/AMD.jpg";
 import PlacaDeVideo from "../assets/placaDeVideo.png";
 
 export default function BuyCard() {
+    const navigate = useNavigate();
+
   return (
     <div className="max-w-7xl mx-auto p-6">
       {/* BREADCRUMB */}
@@ -163,7 +168,7 @@ export default function BuyCard() {
             <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg cursor-pointer">
               Comprar agora
             </button>
-            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg cursor-pointer">
+            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg cursor-pointer" onClick={() => navigate("/cart")}>
               <div className="flex items-center justify-center gap-2">
                 <FaShoppingCart />
                 Adicionar ao carrinho
