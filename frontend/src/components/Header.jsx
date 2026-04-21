@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import logo from "../assets/astroLogoHeader.png";
 import title from "../assets/astroTitle.png";
 import Icon from "./Icon";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <header
       className="w-full bg-white relative z-10"
@@ -18,7 +22,7 @@ export default function Header() {
           <img
             src={logo}
             className="w-20 max-w-none cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => navigate("/")}
           />
 
           <div className="relative flex-1 max-w-100">
@@ -39,7 +43,7 @@ export default function Header() {
         <img
           src={title}
           className="h-14 absolute left-1/2 -translate-x-1/2 cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => navigate("/")}
         />
 
         {/* Seção da direita (contato, cep, carrinho, modo claro/escuro, conta) */}
@@ -52,14 +56,26 @@ export default function Header() {
             <span className="text-sm mr-2">Informe seu CEP</span>
           </div>
 
-          <Icon name="cart-outline" className="text-3xl cursor-pointer" />
+          <button
+            onClick={() => navigate("/cart")}
+            className="cursor-pointer flex items-center"
+          >
+            <Icon name="cart-outline" className="text-3xl" />
+          </button>
 
-          <Icon name="star-outline" className="text-3xl cursor-pointer" />
+          <button
+            onClick={() => navigate("/")}
+            className="cursor-pointer flex items-center"
+          >
+            <Icon name="star-outline" className="text-3xl" />
+          </button>
 
-          <Icon
-            name="person-circle-outline"
-            className="text-3xl cursor-pointer"
-          />
+          <button
+            onClick={() => navigate("/")}
+            className="cursor-pointer flex items-center"
+          >
+            <Icon name="person-circle-outline" className="text-3xl" />
+          </button>
         </div>
       </div>
     </header>

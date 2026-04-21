@@ -21,6 +21,14 @@ createRoot(document.getElementById("root")).render(
           }
         />
         <Route
+          path="/cart"
+          element={
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          }
+        />
+        <Route
           path="/carrinho"
           element={
             <MainLayout>

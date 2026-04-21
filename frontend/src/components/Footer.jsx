@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io5";
 import logo from "../assets/astroLogo.png";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  
   return (
     <footer
       className="bg-white border-t border-gray-200 pt-10 pb-2 px-8 mt-8 font-inter"
@@ -15,7 +19,7 @@ export default function Footer() {
             src={logo}
             alt="ASTRO"
             className="h-14 w-auto cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => navigate("/")}
           />
           <div className="flex gap-1">
             <p className="text-sm text-black">Siga-nos</p>
