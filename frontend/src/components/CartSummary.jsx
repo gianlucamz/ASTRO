@@ -23,7 +23,7 @@ export default function CartSummary({ subtotal, total }) {
           <input
             type="text"
             placeholder="Insira seu CEP*"
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-800"
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-500"
           />
           <button className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-sm transition-colors cursor-pointer">
             <IoSearchOutline size={18} />
