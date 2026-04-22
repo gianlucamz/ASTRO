@@ -33,3 +33,11 @@ export async function login(req, res) {
 
   res.json({ token, user: { id: user.id, name: user.name, role: user.role } });
 }
+
+export async function getUsers(req, res) {
+  const users = await prisma.user.findMany({
+    select: { id: true, name: true, email: true, role: true },
+  });
+
+  res.json(users);
+}

@@ -4,21 +4,23 @@ import {
   FaShoppingCart,
   FaThumbsUp,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-
-
-import AMD from "../assets/AMD.jpg";
-import PlacaDeVideo from "../assets/placaDeVideo.png";
+import amd from "../assets/AMD.jpg";
+import placa from "../assets/placaDeVideo.png";
+import placa2 from "../assets/placa2.webp";
+import placa3 from "../assets/placa3.webp";
+import placa4 from "../assets/placa4.webp";
+import placa5 from "../assets/placa5.webp";
+import placa6 from "../assets/placa6.webp";
+import placa7 from "../assets/placa7.webp";
+import placa8 from "../assets/placa8.webp";
 
 export default function BuyCard() {
-    const navigate = useNavigate();
-
   return (
     <div className="max-w-7xl mx-auto p-6">
       {/* BREADCRUMB */}
-      <div className="text-sm font-semibold flex gap-2 mb-6">
-        <span className="hover:underline cursor-pointer ">Hardware</span>
+      <div className="text-sm flex gap-2 mb-6 font-semibold">
+        <span className="hover:underline cursor-pointer">Hardware</span>
         <span> &rsaquo; </span>
         <span className="hover:underline cursor-pointer">Placa de Vídeo</span>
         <span> &rsaquo; </span>
@@ -29,20 +31,31 @@ export default function BuyCard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* IMAGENS */}
         <div className="flex flex-col gap-4">
-          <img src={PlacaDeVideo} alt="produto" className="w-full rounded-lg" />
+          <img src={placa} alt="produto" className="w-full rounded-lg" />
 
           {/* MINIATURAS */}
-          <div className="flex gap-2">
-            <div className="w-16 h-16 border border-gray-300">
-              <img src={PlacaDeVideo} />
-            </div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
-            <div className="w-16 h-16 border cursor-pointer"></div>
+          <div className="flex gap-2 overflow-x-auto">
+            {[
+              placa,
+              placa2,
+              placa3,
+              placa4,
+              placa5,
+              placa6,
+              placa7,
+              placa8,
+            ].map((img, i) => (
+              <div
+                key={i}
+                className="w-16 h-16 border rounded-lg flex-shrink-0 cursor-pointer hover:border-purple-600 overflow-hidden"
+              >
+                <img
+                  src={img}
+                  alt={`miniatura ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
 
           {/* DESCRIÇÃO RESUMIDA */}
@@ -89,24 +102,24 @@ export default function BuyCard() {
             {/* COMENTÁRIOS */}
             {[
               {
-                name: "Lucas Almeida",
-                text:
+                nome: "Lucas Almeida",
+                texto:
                   "Placa muito boa pelo preço. Roda todos os jogos que testei em qualidade alta sem travar. Instalação simples e desempenho consistente.",
               },
               {
-                name: "Rafael Costa",
-                text:
+                nome: "Rafael Costa",
+                texto:
                   "Desempenho excelente em Full HD. Os jogos ficam fluidos e a qualidade gráfica é bem nítida. Atendeu totalmente o que eu precisava.",
               },
               {
-                name: "Bruno Martins",
-                text:
+                nome: "Bruno Martins",
+                texto:
                   "Gostei bastante. Silenciosa, não esquenta muito e entrega uma performance estável. Ótima opção para quem quer jogar bem sem gastar tanto.",
               },
             ].map((review, i) => (
               <div key={i} className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold">{review.name}</span>
+                  <span className="font-semibold">{review.nome}</span>
                   <div className="flex gap-1">
                     <FaStar className="text-purple-600 text-sm" />
                     <FaStar className="text-purple-600 text-sm" />
@@ -115,17 +128,16 @@ export default function BuyCard() {
                     <FaStar className="text-purple-600 text-sm" />
                   </div>
                 </div>
-
-                <p className="text-sm text-gray-700">{review.text}</p>
-                <div key={i} className="flex flex-col gap-1 max-w-28">
-                  <button className="flex items-center gap-2 border rounded-full px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">
+                <p className="text-sm text-gray-700">{review.texto}</p>
+                <div className="flex flex-col gap-1 max-w-28">
+                  <button className="flex items-center gap-2 border rounded-full px-3 py-1 text-sm text-gray-600 hover:bg-gray-100">
                     É útil <FaThumbsUp /> (0)
                   </button>
                 </div>
               </div>
             ))}
 
-            <span className="text-purple-600 text-sm cursor-pointer underline">
+            <span className="text-purple-600 text-sm cursor-pointer first-line:underline">
               Ver mais
             </span>
           </div>
@@ -147,7 +159,7 @@ export default function BuyCard() {
             <FaStarHalfAlt className="text-purple-600" />
             <span className="text-sm ml-1">
               (925)
-              <img src={AMD} alt="AMD" className="inline w-12 ml-2" />
+              <img src={amd} alt="AMD" className="inline w-12 ml-2" />
             </span>
           </div>
 
@@ -165,10 +177,10 @@ export default function BuyCard() {
 
           {/* BOTÕES */}
           <div className="flex flex-col gap-3">
-            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg cursor-pointer">
+            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg">
               Comprar agora
             </button>
-            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg cursor-pointer" onClick={() => navigate("/cart")}>
+            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg">
               <div className="flex items-center justify-center gap-2">
                 <FaShoppingCart />
                 Adicionar ao carrinho
@@ -185,7 +197,7 @@ export default function BuyCard() {
                 placeholder="Insira seu CEP*"
                 className="border rounded-lg px-3 py-2 w-full text-sm"
               />
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg cursor-pointer">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
                 <FaSearch />
               </button>
             </div>
@@ -270,6 +282,27 @@ export default function BuyCard() {
               <p>2500 gramas (bruto com embalagem)</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* PRODUTOS RELACIONADOS */}
+      <div className="mt-10">
+        <h2 className="text-lg font-bold uppercase mb-6">
+          Produtos Relacionados
+        </h2>
+        <div className="grid grid-cols-6 gap-4">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-2 cursor-pointer rounded-lg p-3 shadow-md hover:shadow-xl transition-shadow"
+            >
+              <img src={placa} alt="produto" className="w-full rounded-lg" />
+              <p className="text-xs text-gray-700 font-semibold">
+                Placa de Vídeo RX 7600 GAMING OC 8G AMD Radeon Gigabyte, 8GB...
+              </p>
+              <span className="text-sm font-bold text-black">R$ 1.699,99</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

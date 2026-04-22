@@ -103,7 +103,7 @@ export default function RegisterCNPJForm({ onSwitchToCPF, onClose }) {
           name="password"
           placeholder="Senha*"
           required
-          className="w-full border border-gray-400 px-4 py-3 text-sm outline-none focus:border-gray-600 pr-10"
+          className="w-full border border-gray-400 px-4 py-3 text-sm outline-none focus:border-gray-600 pr-10 [&::-ms-reveal]:hidden [&::-webkit-credentials-auto-fill-button]:hidden"
         />
         <button
           type="button"
