@@ -28,6 +28,12 @@ export default function ProductRow({ title }) {
       price: 1699.99,
       image: PlacaDeVideo,
     },
+    {
+      id: 5,
+      name: "Placa de Vídeo RX 7600 GAMING OC 8G AMD Radeon Gigabyte,8GB...",
+      price: 1699.99,
+      image: PlacaDeVideo,
+    },
   ];
 
   return (
@@ -47,7 +53,7 @@ export default function ProductRow({ title }) {
           ))}
         </div>
         <button className="absolute right-6 bg-white shadow rounded-full p-2 ml-2 cursor-pointer">
-          <IoChevronForward size={22} className="text-gray-600" />
+          <IoChevronForward size={24} className="text-gray-600" />
         </button>
       </div>
     </div>

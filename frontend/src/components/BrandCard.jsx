@@ -1,7 +1,7 @@
 export default function BrandCard({ name, image }) {
   return (
     <div
-      className="min-w-[240px] max-w-[240px] cursor-pointer hover:shadow-xl transition-shadow"
+      className="min-w-[265px] max-w-[265px] cursor-pointer hover:shadow-xl transition-shadow"
       style={{ boxShadow: "0px 2px 8px rgba(0,0,0,0.15)" }}
     >
       <div className="rounded-lg overflow-hidden h-[150px] bg-white flex items-center justify-center">

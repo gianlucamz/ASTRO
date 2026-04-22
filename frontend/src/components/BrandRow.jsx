@@ -7,6 +7,7 @@ const brands = [
   { id: 2, name: "INTEL", image: IntelCard },
   { id: 3, name: "INTEL", image: IntelCard },
   { id: 4, name: "INTEL", image: IntelCard },
+  { id: 5, name: "INTEL", image: IntelCard },
 ];
 
 export default function BrandRow() {
