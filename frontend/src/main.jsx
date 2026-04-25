@@ -4,10 +4,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 import MainLayout from "./layouts/MainLayout";
+
 import Home from "./pages/Home";
-import Sidebar from "./components/Sidebar";
 import Cart from "./pages/Cart";
 import Buycard from "./pages/Buycard";
+import WishList from "./pages/WishList"
+
+import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
 
 createRoot(document.getElementById("root")).render(
@@ -52,6 +55,24 @@ createRoot(document.getElementById("root")).render(
           element={
             <MainLayout>
               <Buycard />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/desejos"
+          element={
+            <MainLayout>
+              <WishList />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <MainLayout>
+              <WishList />
             </MainLayout>
           }
         />
