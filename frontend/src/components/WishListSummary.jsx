@@ -12,11 +12,11 @@ export default function WishlistSummary({ total, totalItems }) {
         </p>
         <IoInformationCircleOutline
           size={20}
-          className="text-gray-400 shrink-0 ml-2"
+          className="text-gray-800 shrink-0 ml-2"
         />
       </div>
 
-      <p className="text-sm text-gray-600 -mt-2">
+      <p className="text-sm text-gray-600 mt-1">
         Salve produtos para comprar depois e acompanhe mudanças de preço e
         disponibilidade.
       </p>
@@ -28,7 +28,7 @@ export default function WishlistSummary({ total, totalItems }) {
 
       <p className="text-sm font-semibold text-gray-700">Aproveite!</p>
 
-      <label className="flex items-start gap-2 text-sm text-gray-600 cursor-pointer -mt-2">
+      <label className="flex items-start gap-2 text-sm text-gray-600 cursor-pointer mt-1">
         <input
           type="checkbox"
           checked={notificar}

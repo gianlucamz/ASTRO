@@ -1,5 +1,5 @@
-import WishlistItem from "../components/WishlistItem";
-import WishlistSummary from "../components/WishlistSummary";
+import WishlistItem from "../components/WishListItem";
+import WishlistSummary from "../components/WishListSummary";
 
 import PlacaDeVideo from "../assets/placaDeVideo.png";
 
@@ -35,7 +35,7 @@ export default function Wishlist() {
 
   return (
     <div className="w-full px-16 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6 ml-10">
         Lista de desejos
       </h1>
       <div className="flex gap-6 items-start">

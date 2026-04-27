@@ -130,7 +130,7 @@ export default function BuyCard() {
                 </div>
                 <p className="text-sm text-gray-700">{review.texto}</p>
                 <div className="flex flex-col gap-1 max-w-28">
-                  <button className="flex items-center gap-2 border rounded-full px-3 py-1 text-sm text-gray-600 hover:bg-gray-100">
+                  <button className="flex items-center gap-2 border rounded-full px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">
                     É útil <FaThumbsUp /> (0)
                   </button>
                 </div>
@@ -177,10 +177,10 @@ export default function BuyCard() {
 
           {/* BOTÕES */}
           <div className="flex flex-col gap-3">
-            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg">
+            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg cursor-pointer">
               Comprar agora
             </button>
-            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg">
+            <button className="w-full border-2 border-purple-600 hover:bg-purple-50 text-purple-600 font-semibold py-3 rounded-lg cursor-pointer">
               <div className="flex items-center justify-center gap-2">
                 <FaShoppingCart />
                 Adicionar ao carrinho
@@ -197,7 +197,7 @@ export default function BuyCard() {
                 placeholder="Insira seu CEP*"
                 className="border rounded-lg px-3 py-2 w-full text-sm"
               />
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg cursor-pointer">
                 <FaSearch />
               </button>
             </div>

@@ -15,7 +15,7 @@ export default function CartItem({ image, name, price }) {
         <p className="text-sm text-gray-800 leading-1">Com desconto no PIX: R$ 334,31</p>
         <p className="text-sm text-gray-800 leading-1">Parcelado no cartão sem juros: R$ 379,90</p>
 
-        <button className="w-fit bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold mt-3 px-6 py-2 rounded-xs transition-colors cursor-pointer">
+        <button className="w-fit bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold mt-3 px-6 py-2 rounded-lg transition-colors cursor-pointer">
           Comprar agora
         </button>
       </div>

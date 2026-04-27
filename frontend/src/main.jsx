@@ -8,7 +8,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Buycard from "./pages/Buycard";
-import WishList from "./pages/WishList"
+import WishList from "./pages/WishList";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";

@@ -69,7 +69,7 @@ export default function Header() {
             </button>
 
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/wishlist")}
               className="cursor-pointer flex items-center"
             >
               <Icon name="star-outline" className="text-3xl" />

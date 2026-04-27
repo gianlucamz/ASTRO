@@ -34,15 +34,15 @@ export default function WishlistItem({ image, name, price, rating, addedAt }) {
       />
 
       <div className="flex-1 flex flex-col gap-1">
-        <p className="text-sm font-bold text-gray-900 leading-snug pr-6">
+        <p className="font-bold text-gray-900 leading-snug pr-6">
           {name}
         </p>
         <StarRating rating={rating} />
         <p className="text-xs text-gray-400 mt-1">Adicionado em {addedAt}</p>
       </div>
 
-      <div className="flex flex-col items-end gap-3 shrink-0">
-        <p className="text-lg font-bold text-gray-900">
+      <div className="flex flex-col items-end gap-3 shrink-0 mt-6">
+        <p className="text-lg font-bold text-gray-900 mt-6">
           {price.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
