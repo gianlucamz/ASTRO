@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io5";
 import logo from "../assets/astroLogo.png";
