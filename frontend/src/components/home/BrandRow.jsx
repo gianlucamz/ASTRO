@@ -1,6 +1,6 @@
 import { IoChevronForward } from "react-icons/io5";
-import IntelCard from "../assets/intelCard.png";
-import BrandCard from "./home/BrandCard";
+import IntelCard from "../../assets/intelCard.png";
+import BrandCard from "./BrandCard";
 
 const brands = [
   { id: 1, name: "INTEL", image: IntelCard },

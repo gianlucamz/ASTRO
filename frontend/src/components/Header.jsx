@@ -5,7 +5,7 @@ import logo from "../assets/astroLogoHeader.png";
 import title from "../assets/astroTitle.png";
 import Icon from "./Icon";
 
-import AuthModal from "./AuthModal";
+import AuthModal from "./login/AuthModal";
 
 export default function Header() {
   const navigate = useNavigate();

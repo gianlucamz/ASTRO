@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
-import LoginForm from "./login/LoginForm";
-import RegisterCPFForm from "./login/RegisterCPFForm";
-import RegisterCNPJForm from "./login/RegisterCNPJForm";
+import LoginForm from "./LoginForm.jsx";
+import RegisterCPFForm from "./RegisterCPFForm.jsx";
+import RegisterCNPJForm from "./RegisterCNPJForm.jsx";
 
 export default function AuthModal({ onClose }) {
   const [tela, setTela] = useState("login");

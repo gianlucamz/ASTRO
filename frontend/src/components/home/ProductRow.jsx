@@ -1,6 +1,6 @@
-import ProductCard from "./home/ProductCard";
+import ProductCard from "./ProductCard";
 import { IoChevronForward } from "react-icons/io5";
-import PlacaDeVideo from "../assets/placaDeVideo.png";
+import PlacaDeVideo from "../../assets/placaDeVideo.png";
 
 export default function ProductRow({ title }) {
   const products = [
