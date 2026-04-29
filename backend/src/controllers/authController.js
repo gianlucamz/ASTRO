@@ -41,3 +41,19 @@ export async function getUsers(req, res) {
 
   res.json(users);
 }
+
+export async function getUserById(req, res) {
+  const { id } = req.params;
+
+  // Support numeric or string-based IDs: try number if it looks numeric
+  const where = Number.isInteger(Number(id)) ? { id: Number(id) } : { id };
+
+  const user = await prisma.user.findUnique({
+    where,
+    select: { id: true, name: true, email: true, role: true },
+  });
+
+  if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
+
+  res.json(user);
+}
