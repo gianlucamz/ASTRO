@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
 import Sidebar from "../components/Sidebar";
-import ProductRow from "../components/ProductRow";
-import BrandRow from "../components/BrandRow";
+import ProductRow from "../components/home/ProductRow";
+import BrandRow from "../components/home/BrandRow";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
-import WishlistItem from "../components/WishListItem";
-import WishlistSummary from "../components/WishListSummary";
+import WishlistItem from "../components/wishlist/WishListItem";
+import WishlistSummary from "../components/wishlist/WishListSummary";
 
 import PlacaDeVideo from "../assets/placaDeVideo.png";
 

@@ -1,5 +1,5 @@
-import CartItem from '../components/CartItem'
-import CartSummary from '../components/CartSummary'
+import CartItem from '../components/cart/CartItem'
+import CartSummary from '../components/cart/CartSummary'
 import PlacaDeVideo from '../assets/placaDeVideo.png'
 
 export default function Cart() {

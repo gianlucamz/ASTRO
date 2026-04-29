@@ -1,4 +1,4 @@
-import ProductCard from "./ProductCard";
+import ProductCard from "./home/ProductCard";
 import { IoChevronForward } from "react-icons/io5";
 import PlacaDeVideo from "../assets/placaDeVideo.png";
 
