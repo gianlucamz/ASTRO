@@ -4,6 +4,9 @@ import {
   FaShoppingCart,
   FaThumbsUp,
 } from "react-icons/fa";
+
+import { IoAlertCircleOutline } from "react-icons/io5";
+
 import { FaSearch } from "react-icons/fa";
 import amd from "../assets/AMD.jpg";
 import placa from "../assets/placaDeVideo.png";
@@ -204,6 +207,15 @@ export default function BuyCard() {
             <span className="text-purple-600 text-sm cursor-pointer underline">
               Não lembro meu CEP
             </span>
+            <div className="flex items-center gap-1 -ml-2">
+              <IoAlertCircleOutline
+                size={16}
+                className="text-gray-800 shrink-0 ml-2"
+              />
+              <span className="text-sm">
+                Frete grátis para todo o litoral norte
+              </span>
+            </div>
           </div>
 
           {/* DESCRIÇÃO DO PRODUTO */}
