@@ -3,14 +3,22 @@ import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
 
 export async function register(req, res) {
-  const { name, email, password } = req.body;
+  const { name, email, password, cpf, cnpj, telefone, nascimento } = req.body;
 
   const exists = await prisma.user.findUnique({ where: { email } });
   if (exists) return res.status(400).json({ error: "Email já cadastrado" });
 
   const hashed = await bcrypt.hash(password, 10);
   const user = await prisma.user.create({
-    data: { name, email, password: hashed },
+    data: {
+      name,
+      email,
+      password: hashed,
+      cpf: cpf || null,
+      cnpj: cnpj || null,
+      telefone: telefone || null,
+      nascimento: nascimento || null,
+    },
   });
 
   res.status(201).json({ id: user.id, name: user.name, email: user.email });
@@ -45,7 +53,6 @@ export async function getUsers(req, res) {
 export async function getUserById(req, res) {
   const { id } = req.params;
 
-  // Support numeric or string-based IDs: try number if it looks numeric
   const where = Number.isInteger(Number(id)) ? { id: Number(id) } : { id };
 
   const user = await prisma.user.findUnique({

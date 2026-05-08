@@ -10,11 +10,38 @@ export default function RegisterCPFForm({ onSwitchToCNPJ, onClose }) {
   const [receberOfertas, setReceberOfertas] = useState(false);
   const [aceitarPoliticas, setAceitarPoliticas] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    onClose();
-  }
+    const form = e.target;
 
+    try {
+      const response = await fetch("http://localhost:3333/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.nome.value,
+          email: form.email.value,
+          password: form.password.value,
+          cpf: form.cpf.value,
+          telefone: form.telefone.value,
+          nascimento: form.nascimento.value,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Erro ao cadastrar");
+        return;
+      }
+
+      alert("Cadastro realizado com sucesso!");
+      onClose();
+    } catch {
+      alert("Erro ao conectar com o servidor");
+    }
+  }
+  
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="grid grid-cols-2 gap-4">

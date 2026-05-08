@@ -16,8 +16,12 @@ model User {
   id        String   @id @default(cuid())
   name      String
   email     String   @unique
+  cpf       String?  @unique
+  cnpj      String?  @unique
+  telefone  String?
+  nascimento String?
   password  String
-  role      UserRole @default(customer)
+  role      String   @default("customer")
   createdAt DateTime @default(now())
 
   addresses Address[]
