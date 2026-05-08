@@ -22,7 +22,7 @@ const menuSections = [
   },
 ];
 
-export default function AstroSidebar() {
+export default function Sidebar() {
   const [activeItem, setActiveItem] = useState(null);
 
   return (

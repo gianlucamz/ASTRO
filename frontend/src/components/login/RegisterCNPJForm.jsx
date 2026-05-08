@@ -11,9 +11,35 @@ export default function RegisterCNPJForm({ onSwitchToCPF, onClose }) {
   const [receberOfertas, setReceberOfertas] = useState(false);
   const [aceitarPoliticas, setAceitarPoliticas] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    onClose();
+    const form = e.target;
+
+    try {
+      const response = await fetch("http://localhost:3333/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.nomeEmpresa.value,
+          email: form.email.value,
+          password: form.password.value,
+          cnpj: form.cnpj.value,
+          telefone: form.celular.value,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Erro ao cadastrar");
+        return;
+      }
+
+      alert("Cadastro realizado com sucesso!");
+      onClose();
+    } catch {
+      alert("Erro ao conectar com o servidor");
+    }
   }
 
   return (
