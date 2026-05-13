@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Buycard from "./pages/Buycard";
 import WishList from "./pages/WishList";
+import Contact from "./pages/Contact";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -76,6 +77,18 @@ createRoot(document.getElementById("root")).render(
             </MainLayout>
           }
         />
+
+        <Route path="/contato" element={
+          <MainLayout>
+            <Contact />
+          </MainLayout>
+        } />
+
+        <Route path="/contact" element={
+          <MainLayout>
+            <Contact />
+          </MainLayout>
+        } />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
