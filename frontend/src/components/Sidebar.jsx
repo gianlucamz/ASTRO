@@ -54,6 +54,12 @@ export default function AstroSidebar() {
           ))}
         </nav>
 
+        <div className="text-center px-2">
+          <p className="text-sm font-semibold text-purple-900 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3">
+            Frete grátis para todo o Litoral Norte - SP
+          </p>
+        </div>
+
         <div className="bg-white shadow rounded-xl p-4 text-black">
           <p className="font-bold text-md mb-1 leading-tight">
             Enfrentando algum problema?
