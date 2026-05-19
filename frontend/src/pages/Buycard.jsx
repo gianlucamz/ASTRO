@@ -209,10 +209,10 @@ export default function BuyCard() {
             </span>
             <div className="flex items-center gap-1 -ml-2">
               <IoAlertCircleOutline
-                size={16}
+                size={22}
                 className="text-gray-800 shrink-0 ml-2"
               />
-              <span className="text-sm">
+              <span className="text-md">
                 Frete grátis para todo o litoral norte
               </span>
             </div>
