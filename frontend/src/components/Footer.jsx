@@ -1,11 +1,15 @@
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io5";
 import logo from "../assets/astroLogo.png";
 
+import AuthModal from "./login/AuthModal";
+
 export default function Footer() {
   const navigate = useNavigate();
-  
+  const [showAuth, setShowAuth] = useState(false);
+
   return (
     <footer
       className="bg-white border-t border-gray-200 pt-10 pb-2 px-8 mt-8 font-inter"
@@ -59,17 +63,29 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900">ATENDIMENTO</h3>
             <ul className="flex flex-col gap-0 leading-1">
               <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
+                <a
+                  href="#"
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => navigate("/contact")}
+                >
                   Fale conosco
                 </a>
               </li>
               <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
+                <a
+                  href="#"
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => navigate("/contact")}
+                >
                   Trocas & devoluções
                 </a>
               </li>
               <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
+                <a
+                  href="#"
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => navigate("/contact")}
+                >
                   FAQ
                 </a>
               </li>
@@ -80,7 +96,11 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900">MINHA CONTA</h3>
             <ul className="flex flex-col gap-0 leading-1">
               <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
+                <a
+                  href="#"
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => setShowAuth(true)}
+                >
                   Login/Cadastro
                 </a>
               </li>
@@ -90,7 +110,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
+                <a
+                  href="#"
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => navigate("/wishlist")}
+                >
                   Lista de desejos
                 </a>
               </li>
@@ -119,6 +143,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </footer>
   );
 }
