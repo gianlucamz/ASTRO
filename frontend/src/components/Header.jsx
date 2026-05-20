@@ -53,7 +53,12 @@ export default function Header() {
 
           {/* Seção da direita (contato, cep, carrinho, modo claro/escuro, conta) */}
           <div className="flex items-center ml-auto font-inter mr-16 gap-14">
-            <span className="cursor-pointer text-sm">Contato</span>
+            <span
+              className="cursor-pointer text-sm"
+              onClick={() => navigate("/contact")}
+            >
+              Contato
+            </span>
 
             <div className="flex items-center gap-1 cursor-pointer">
               <Icon name="location-outline" className="text-xl" />

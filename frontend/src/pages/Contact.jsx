@@ -11,7 +11,7 @@ export default function Contato() {
     <main className="bg-white text-gray-900">
       {/* Título simples */}
       <section className="border-b border-gray-200 py-12 text-center">
-        <h1 className="text-4xl font-bold text-purple-900">Contato</h1>
+        <h1 className="text-5xl font-bold text-purple-900">Contato</h1>
         <p className="mt-3 text-gray-600">
           Estamos aqui para ajudar você com dúvidas, pedidos e suporte.
         </p>
