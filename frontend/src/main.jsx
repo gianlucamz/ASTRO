@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Buycard from "./pages/Buycard";
 import WishList from "./pages/WishList";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -89,6 +90,15 @@ createRoot(document.getElementById("root")).render(
             <Contact />
           </MainLayout>
         } />
+
+        <Route
+  path="/about"
+  element={
+    <MainLayout>
+      <About />
+    </MainLayout>
+  }
+/>
       </Routes>
     </BrowserRouter>
   </StrictMode>,
