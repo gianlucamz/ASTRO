@@ -79,26 +79,41 @@ createRoot(document.getElementById("root")).render(
           }
         />
 
-        <Route path="/contato" element={
-          <MainLayout>
-            <Contact />
-          </MainLayout>
-        } />
-
-        <Route path="/contact" element={
-          <MainLayout>
-            <Contact />
-          </MainLayout>
-        } />
+        <Route
+          path="/contato"
+          element={
+            <MainLayout>
+              <Contact />
+            </MainLayout>
+          }
+        />
 
         <Route
-  path="/about"
-  element={
-    <MainLayout>
-      <About />
-    </MainLayout>
-  }
-/>
+          path="/contact"
+          element={
+            <MainLayout>
+              <Contact />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            <MainLayout>
+              <About />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/sobrenos"
+          element={
+            <MainLayout>
+              <About />
+            </MainLayout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
