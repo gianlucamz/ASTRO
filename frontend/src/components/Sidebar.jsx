@@ -57,8 +57,8 @@ export default function Sidebar() {
         </nav>
 
         <div className="text-sm font-semibold text-purple-900 text-center px-2 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3 ">
-          <a href="#"  onClick={() => navigate("/about")} >
-            Frete grátis para todo o Litoral Norte - SP
+          <a onClick={() => navigate("/about")} >
+          Frete grátis para todo o Litoral Norte - SP
           </a>
         </div>
 
