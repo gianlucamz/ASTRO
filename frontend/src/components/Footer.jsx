@@ -42,7 +42,10 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900">INSTITUCIONAL</h3>
             <ul className="flex flex-col gap-0 leading-1">
               <li>
-                <a className="text-xs text-gray-700 font-semibold" onClick={() => navigate("/about")}>
+                <a
+                  className="text-xs text-gray-700 font-semibold"
+                  onClick={() => navigate("/about")}
+                >
                   Sobre nós
                 </a>
               </li>
@@ -64,8 +67,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-0 leading-1">
               <li>
                 <a
-                  href="#"
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => navigate("/contact")}
                 >
                   Fale conosco
@@ -73,7 +75,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => navigate("/contact")}
                 >
                   Trocas & devoluções
@@ -81,7 +83,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => navigate("/contact")}
                 >
                   FAQ
@@ -95,8 +97,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-0 leading-1">
               <li>
                 <a
-                  href="#"
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => setShowAuth(true)}
                 >
                   Login/Cadastro
@@ -109,7 +110,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => navigate("/wishlist")}
                 >
                   Lista de desejos

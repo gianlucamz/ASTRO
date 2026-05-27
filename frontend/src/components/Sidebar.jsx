@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const menuSections = [
   {
@@ -57,8 +57,8 @@ export default function Sidebar() {
         </nav>
 
         <div className="text-sm font-semibold text-purple-900 text-center px-2 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3 ">
-          <a onClick={() => navigate("/about")} >
-          Frete grátis para todo o Litoral Norte - SP
+          <a className="cursor-pointer" onClick={() => navigate("/about")}>
+            Frete grátis para todo o Litoral Norte - SP
           </a>
         </div>
 
