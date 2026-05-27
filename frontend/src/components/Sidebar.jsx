@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 const menuSections = [
   {
@@ -24,6 +25,7 @@ const menuSections = [
 
 export default function Sidebar() {
   const [activeItem, setActiveItem] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <div className="flex bg-gray-100">
@@ -54,10 +56,10 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        <div className="text-center px-2">
-          <p className="text-sm font-semibold text-purple-900 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3">
+        <div className="text-sm font-semibold text-purple-900 text-center px-2 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3 ">
+          <a href="#"  onClick={() => navigate("/about")} >
             Frete grátis para todo o Litoral Norte - SP
-          </p>
+          </a>
         </div>
 
         <div className="bg-white shadow rounded-xl p-4 text-black">
