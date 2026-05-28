@@ -43,7 +43,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-0 leading-1">
               <li>
                 <a
-                  className="text-xs text-gray-700 font-semibold"
+                  className="text-xs text-gray-700 font-semibold cursor-pointer"
                   onClick={() => navigate("/about")}
                 >
                   Sobre nós

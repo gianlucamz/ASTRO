@@ -1,21 +1,24 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
-export default function LoginForm({ onSwitchToCadastro, onClose }) {
+export default function LoginForm({ onSwitchToCadastro, onClose, onSuccess }) {
   const [showPassword, setShowPassword] = useState(false);
   const [lembrar, setLembrar] = useState(false);
+  const { login } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
 
     try {
       const response = await fetch("http://localhost:3333/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          email: form.email.value,
+          password: form.password.value,
+        }),
       });
 
       const data = await response.json();
@@ -25,9 +28,8 @@ export default function LoginForm({ onSwitchToCadastro, onClose }) {
         return;
       }
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      onClose();
+      login(data.user, data.token);
+      onSuccess();
     } catch {
       alert("Erro ao conectar com o servidor");
     }

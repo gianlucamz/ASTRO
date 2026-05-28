@@ -30,7 +30,6 @@ export default function ProductRow({ title }) {
       id: 4,
       name: "Placa de Vídeo RX 7600 GAMING OC 8G AMD Radeon Gigabyte,8GB...",
       price: 1699.99,
-      image: PlacaDeVideo,
     },
     {
       id: 5,
