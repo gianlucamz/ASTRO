@@ -1,10 +1,10 @@
-# 🛒 ASTRO — E-commerce de Hardware
+# ASTRO — E-commerce de Hardware
 
 > Plataforma de e-commerce especializada em hardware e componentes de informática, desenvolvida com React.js no front-end e Node.js no back-end.
 
 ---
 
-## 📋 Índice
+## Índice
 
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Tecnologias](#tecnologias)
@@ -163,7 +163,7 @@ JWT_SECRET=sua_chave_secreta_aqui
 PORT=3000
 ```
 
-> ⚠️ Nunca suba o arquivo `.env` para o repositório. Ele já está no `.gitignore`.
+> Nunca suba o arquivo `.env` para o repositório. Ele já está no `.gitignore`.
 
 ---
 
@@ -188,13 +188,10 @@ PORT=3000
 
 ---
 
-## Autor
+## Autores
 
-**Gianluca Moreno Zocarato**
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/gianluca-moreno-b451213ba)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gianlucamz)
-
----
-
-> Projeto em desenvolvimento ativo. Contribuições e sugestões são bem-vindas!
+**- Gianluca Moreno Zocarato** (https://github.com/gianlucamz)
+**- Isaque Barcelos Leme De Souza** (https://github.com/Isaque-Barcelos08)
+**- Matheus Pires Macedo** (https://github.com/Matiospires)
+**- Nand de Freitas Morais** (https://github.com/nandfm)
+**- Osvaldo Costa Rocha Júnior** (https://github.com/OhJr)
