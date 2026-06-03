@@ -64,3 +64,50 @@ export async function getUserById(req, res) {
 
   res.json(user);
 }
+
+export async function updateUser(req, res) {
+  const { id } = req.params;
+  const { name, email, password, cpf, cnpj, telefone, nascimento } = req.body;
+
+  const where = Number.isInteger(Number(id)) ? { id: Number(id) } : { id };
+
+  const exists = await prisma.user.findUnique({ where });
+  if (!exists) return res.status(404).json({ error: "Usuário não encontrado" });
+
+  if (email && email !== exists.email) {
+    const emailTaken = await prisma.user.findUnique({ where: { email } });
+    if (emailTaken)
+      return res.status(400).json({ error: "Email já cadastrado" });
+  }
+
+  const data = {
+    ...(name && { name }),
+    ...(email && { email }),
+    ...(password && { password: await bcrypt.hash(password, 10) }),
+    ...(cpf !== undefined && { cpf: cpf || null }),
+    ...(cnpj !== undefined && { cnpj: cnpj || null }),
+    ...(telefone !== undefined && { telefone: telefone || null }),
+    ...(nascimento !== undefined && { nascimento: nascimento || null }),
+  };
+
+  const user = await prisma.user.update({
+    where,
+    data,
+    select: { id: true, name: true, email: true, role: true },
+  });
+
+  res.json(user);
+}
+
+export async function deleteUser(req, res) {
+  const { id } = req.params;
+
+  const where = Number.isInteger(Number(id)) ? { id: Number(id) } : { id };
+
+  const exists = await prisma.user.findUnique({ where });
+  if (!exists) return res.status(404).json({ error: "Usuário não encontrado" });
+
+  await prisma.user.delete({ where });
+
+  res.status(204).send();
+}
