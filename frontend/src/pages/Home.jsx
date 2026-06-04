@@ -11,15 +11,15 @@ export default function Home() {
       <Sidebar />
       <main className="flex-1 flex flex-col text-gray-400 text-sm px-20 mt-10 mb-10">
         <Hero />
-        <ProductRow title="Destaques" />
-        <ProductRow title="Promoções" />
+        <ProductRow fileira="destaques" title="Destaques" />
+        <ProductRow fileira="promocoes" title="Promoções" />
         <BrandRow />
-        <ProductRow title="Hardware" />
-        <ProductRow title="Periféricos" />
-        <ProductRow title="Computadores" />
-        <ProductRow title="Smartphones" />
-        <ProductRow title="Games" />
-        <ProductRow title="Diversos" />
+        <ProductRow fileira="hardware" title="Hardware" />
+        <ProductRow fileira="perifericos" title="Periféricos" />
+        <ProductRow fileira="computadores" title="Computadores" />
+        <ProductRow fileira="smartphones" title="Smartphones" />
+        <ProductRow fileira="games" title="Games" />
+        <ProductRow fileira="diversos" title="Diversos" />
         <div className="mt-14 mb-14">
           <img
             src={BannerLitoral}
