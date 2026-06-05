@@ -171,11 +171,11 @@ PORT=3000
 
 | Método | Rota | Descrição | Auth |
 |--------|------|-----------|------|
-| POST | `/auth/register` | Cadastro de usuário | ❌ |
-| POST | `/auth/login` | Login e geração de token | ❌ |
-| GET | `/products` | Listar produtos | ❌ |
-| GET | `/products/:id` | Detalhes de um produto | ❌ |
-| GET | `/categories` | Listar categorias | ❌ |
+| POST | `/auth/register` | Cadastro de usuário | ✅ |
+| POST | `/auth/login` | Login e geração de token | ✅ |
+| GET | `/products` | Listar produtos | ✅ |
+| GET | `/products/:id` | Detalhes de um produto | ✅ |
+| GET | `/categories` | Listar categorias | ✅ |
 | GET | `/cart` | Visualizar carrinho | ✅ |
 | POST | `/cart` | Adicionar item ao carrinho | ✅ |
 | DELETE | `/cart/:id` | Remover item do carrinho | ✅ |
@@ -191,7 +191,11 @@ PORT=3000
 ## Autores
 
 **- Gianluca Moreno Zocarato** (https://github.com/gianlucamz)
+
 **- Isaque Barcelos Leme De Souza** (https://github.com/Isaque-Barcelos08)
+
 **- Matheus Pires Macedo** (https://github.com/Matiospires)
+
 **- Nand de Freitas Morais** (https://github.com/nandfm)
+
 **- Osvaldo Costa Rocha Júnior** (https://github.com/OhJr)
