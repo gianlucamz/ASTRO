@@ -117,8 +117,14 @@ export default function Header() {
                 {showUserMenu && (
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-sm z-50">
                     <div className="px-4 py-3 border-b border-gray-100">
+                      {/* Nome + badge admin */}
                       <p className="text-sm font-semibold text-gray-800 truncate">
-                        {user?.name ?? "Usuário"}
+                        {user?.name?.split(" ")[0] ?? "Usuário"}
+                        {user?.role === "admin" && (
+                          <span className="text-gray-800 font-normal ml-1 text-xs">
+                            (admin)
+                          </span>
+                        )}
                       </p>
                       <p className="text-xs text-gray-500 truncate">
                         {user?.email ?? ""}
@@ -126,6 +132,21 @@ export default function Header() {
                     </div>
 
                     <ul className="py-1">
+                      {/* Exclusivo para admin */}
+                      {user?.role === "admin" && (
+                        <li>
+                          <button
+                            onClick={() => {
+                              navigate("/admin/produto");
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 cursor-pointer font-medium"
+                          >
+                            Adicionar produto
+                          </button>
+                        </li>
+                      )}
+
                       <li>
                         <button
                           onClick={() => {
