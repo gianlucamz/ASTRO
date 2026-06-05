@@ -12,6 +12,9 @@ import Buycard from "./pages/Buycard";
 import WishList from "./pages/WishList";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import AddProduct from "./pages/AddProduct";
+import AdminRoute from "./components/AdminRoute";
+import EditProduct from "./pages/EditProduct";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -60,6 +63,26 @@ createRoot(document.getElementById("root")).render(
               <MainLayout>
                 <Buycard />
               </MainLayout>
+            }
+          />
+
+          <Route
+            path="/product/:slug"
+            element={
+              <MainLayout>
+                <Buycard />
+              </MainLayout>
+            }
+          />
+
+          <Route
+            path="/admin/produto/editar/:id"
+            element={
+              <AdminRoute>
+                <MainLayout>
+                  <EditProduct />
+                </MainLayout>
+              </AdminRoute>
             }
           />
 
@@ -114,6 +137,17 @@ createRoot(document.getElementById("root")).render(
               <MainLayout>
                 <About />
               </MainLayout>
+            }
+          />
+
+          <Route
+            path="/admin/produto"
+            element={
+              <AdminRoute>
+                <MainLayout>
+                  <AddProduct />
+                </MainLayout>
+              </AdminRoute>
             }
           />
         </Routes>

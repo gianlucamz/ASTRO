@@ -24,8 +24,7 @@ export default function Home() {
           <img
             src={BannerLitoral}
             alt="Frete grátis para todo o Litoral Norte - SP"
-            className="w-full shadow-lg"
-            style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.18)" }}
+            className="w-full rounded-2xl shadow-lg"
           />
         </div>
       </main>

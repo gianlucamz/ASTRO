@@ -40,6 +40,7 @@ export default function ProductRow({ fileira, title }) {
               image={product.imageUrl} 
               name={product.name}
               price={product.price}
+              slug={product.slug} // adiciona isso
             />
           ))}
         </div>
