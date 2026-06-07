@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // adiciona useLocation
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,12 +11,32 @@ import ConfirmLogoutModal from "./login/ConfirmLogoutModal";
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showAuth, setShowAuth] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const menuRef = useRef(null);
 
   const { user, logout, isAuthenticated } = useAuth();
+
+  const [query, setQuery] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get("q") || "";
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setQuery(params.get("q") || "");
+  }, [location.search]);
+
+  function handleSearch() {
+    const trimmed = query.trim();
+    if (trimmed) navigate(`/busca?q=${encodeURIComponent(trimmed)}`);
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") handleSearch();
+  }
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -56,11 +76,15 @@ export default function Header() {
             <div className="relative flex-1 max-w-100">
               <input
                 type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder="Busque na ASTRO..."
                 className="w-full border border-gray-400 py-1 text-sm max-h-8 bg-gray-200 pl-5 pr-40 focus:outline-none font-inter"
               />
               <Icon
                 name="search-outline"
+                onClick={handleSearch}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-base cursor-pointer"
               />
             </div>
@@ -117,7 +141,6 @@ export default function Header() {
                 {showUserMenu && (
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-sm z-50">
                     <div className="px-4 py-3 border-b border-gray-100">
-                      {/* Nome + badge admin */}
                       <p className="text-sm font-semibold text-gray-800 truncate">
                         {user?.name?.split(" ")[0] ?? "Usuário"}
                         {user?.role === "admin" && (
@@ -132,7 +155,6 @@ export default function Header() {
                     </div>
 
                     <ul className="py-1">
-                      {/* Exclusivo para admin */}
                       {user?.role === "admin" && (
                         <li>
                           <button
@@ -146,7 +168,6 @@ export default function Header() {
                           </button>
                         </li>
                       )}
-
                       <li>
                         <button
                           onClick={() => {
@@ -197,7 +218,6 @@ export default function Header() {
       </header>
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
-
       {showLogoutConfirm && (
         <ConfirmLogoutModal
           onConfirm={handleLogoutConfirmed}
