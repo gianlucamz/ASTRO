@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
+import AuthModal from "../components/login/AuthModal";
 
 const FILEIRA_LABELS = {
   destaques: "Destaques",
@@ -46,13 +47,17 @@ const REVIEWS = [
 export default function BuyCard() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [addingToCart, setAddingToCart] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -87,6 +92,27 @@ export default function BuyCard() {
         setLoading(false);
       });
   }, [slug]);
+
+  async function handleAddToCart() {
+    if (!isAuthenticated) return setShowAuth(true);
+
+    setAddingToCart(true);
+    try {
+      const token = localStorage.getItem("token");
+      await fetch(`${import.meta.env.VITE_API_URL}/cart/items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+      });
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
+    } finally {
+      setAddingToCart(false);
+    }
+  }
 
   async function handleDelete() {
     setDeleting(true);
@@ -216,7 +242,6 @@ export default function BuyCard() {
 
       {/* TOPO */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* IMAGEM + DESCRIÇÃO + AVALIAÇÕES */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center h-[350px] bg-gray-50 rounded-lg overflow-hidden">
             <img
@@ -226,7 +251,6 @@ export default function BuyCard() {
             />
           </div>
 
-          {/* DESCRIÇÃO */}
           <div className="flex flex-col gap-3 mt-4">
             <h2 className="text-lg font-bold uppercase">
               Descrição do Produto
@@ -238,7 +262,6 @@ export default function BuyCard() {
             ))}
           </div>
 
-          {/* AVALIAÇÕES */}
           <div className="flex flex-col gap-4 mt-4">
             <h2 className="text-lg font-bold uppercase">Avaliações</h2>
             <div className="flex items-center gap-2">
@@ -279,7 +302,6 @@ export default function BuyCard() {
           </div>
         </div>
 
-        {/* INFO */}
         <div className="flex flex-col gap-4">
           <h1 className="text-2xl font-semibold">{product.name}</h1>
 
@@ -291,7 +313,6 @@ export default function BuyCard() {
             <span className="text-sm ml-1">(925)</span>
           </div>
 
-          {/* PREÇO */}
           <div className="flex flex-col">
             <span className="text-3xl font-bold text-purple-600">
               {product.price.toLocaleString("pt-BR", {
@@ -312,7 +333,6 @@ export default function BuyCard() {
             </span>
           </div>
 
-          {/* BOTÕES */}
           <div className="flex flex-col gap-3">
             <button
               disabled={product.stock === 0}
@@ -321,16 +341,21 @@ export default function BuyCard() {
               Comprar agora
             </button>
             <button
-              disabled={product.stock === 0}
-              className="w-full border-2 border-purple-600 hover:bg-purple-50 disabled:opacity-50 disabled:cursor-not-allowed text-purple-600 font-semibold py-3 rounded-lg cursor-pointer"
+              onClick={handleAddToCart}
+              disabled={product.stock === 0 || addingToCart}
+              className="w-full border-2 border-purple-600 hover:bg-purple-50 disabled:opacity-50 disabled:cursor-not-allowed text-purple-600 font-semibold py-3 rounded-lg cursor-pointer transition-colors"
             >
               <div className="flex items-center justify-center gap-2">
-                <FaShoppingCart /> Adicionar ao carrinho
+                <FaShoppingCart />
+                {addingToCart
+                  ? "Adicionando..."
+                  : addedToCart
+                    ? "Adicionado ✓"
+                    : "Adicionar ao carrinho"}
               </div>
             </button>
           </div>
 
-          {/* FRETE */}
           <div className="flex flex-col gap-2">
             <span className="font-bold uppercase">Consulte seu frete</span>
             <div className="flex gap-2">
@@ -393,6 +418,8 @@ export default function BuyCard() {
           </div>
         </div>
       )}
+
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
