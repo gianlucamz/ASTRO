@@ -15,6 +15,7 @@ import About from "./pages/About";
 import AddProduct from "./pages/AddProduct";
 import AdminRoute from "./components/AdminRoute";
 import EditProduct from "./pages/EditProduct";
+import SearchResults from "./pages/SearchResults";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -148,6 +149,15 @@ createRoot(document.getElementById("root")).render(
                   <AddProduct />
                 </MainLayout>
               </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/busca"
+            element={
+              <MainLayout>
+                <SearchResults />
+              </MainLayout>
             }
           />
         </Routes>
