@@ -1,15 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import {
-  FaStar,
-  FaStarHalfAlt,
-  FaShoppingCart,
-  FaThumbsUp,
-} from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaShoppingCart } from "react-icons/fa";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import AuthModal from "../components/login/AuthModal";
+import ReviewSection from "../components/buycard/ReviewSection";
 
 const FILEIRA_LABELS = {
   destaques: "Destaques",
@@ -26,24 +22,6 @@ function getFileira(product) {
   return Object.keys(FILEIRA_LABELS).find((k) => product[k]) || null;
 }
 
-const REVIEWS = [
-  {
-    nome: "Lucas Almeida",
-    texto:
-      "Produto excelente! Atendeu todas as minhas expectativas. Entrega rápida e bem embalado.",
-  },
-  {
-    nome: "Rafael Costa",
-    texto:
-      "Ótima qualidade pelo preço. Recomendo para quem está buscando um bom custo-benefício.",
-  },
-  {
-    nome: "Bruno Martins",
-    texto:
-      "Muito satisfeito com a compra. Produto chegou rápido e funcionou perfeitamente.",
-  },
-];
-
 export default function BuyCard() {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -58,6 +36,9 @@ export default function BuyCard() {
   const [showAuth, setShowAuth] = useState(false);
   const [addingToCart, setAddingToCart] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+
+  const [reviewAverage, setReviewAverage] = useState(0);
+  const [reviewTotal, setReviewTotal] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -120,10 +101,7 @@ export default function BuyCard() {
       const token = localStorage.getItem("token");
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/products/${product.id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        },
+        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } },
       );
       if (res.ok) navigate("/");
     } catch {
@@ -165,7 +143,6 @@ export default function BuyCard() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      {/* BARRA ADMIN */}
       {user?.role === "admin" && (
         <div className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-xl px-5 py-3 mb-6">
           <span className="text-sm text-gray-500">
@@ -189,7 +166,6 @@ export default function BuyCard() {
         </div>
       )}
 
-      {/* MODAL DE CONFIRMAÇÃO DE DELETE */}
       {confirmDelete && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-sm flex flex-col gap-4">
@@ -202,14 +178,14 @@ export default function BuyCard() {
             <div className="flex gap-3">
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="flex-1 border-2 border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-2 rounded-lg cursor-pointer transition-colors"
+                className="flex-1 border-2 border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-2 rounded-lg cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleDelete}
                 disabled={deleting}
-                className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg cursor-pointer transition-colors disabled:opacity-60"
+                className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg cursor-pointer disabled:opacity-60"
               >
                 {deleting ? "Deletando..." : "Deletar"}
               </button>
@@ -218,7 +194,6 @@ export default function BuyCard() {
         </div>
       )}
 
-      {/* BREADCRUMB */}
       <div className="text-sm flex gap-2 mb-6 font-semibold">
         <span
           className="hover:underline cursor-pointer"
@@ -240,7 +215,6 @@ export default function BuyCard() {
         </span>
       </div>
 
-      {/* TOPO */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center h-[350px] bg-gray-50 rounded-lg overflow-hidden">
@@ -262,55 +236,35 @@ export default function BuyCard() {
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 mt-4">
-            <h2 className="text-lg font-bold uppercase">Avaliações</h2>
-            <div className="flex items-center gap-2">
-              <span className="text-5xl font-bold">4.8</span>
-              <div className="flex flex-col">
-                <div className="flex gap-1">
-                  {[...Array(4)].map((_, i) => (
-                    <FaStar key={i} className="text-purple-600" />
-                  ))}
-                  <FaStarHalfAlt className="text-purple-600" />
-                </div>
-                <span className="text-sm text-gray-500">925 Avaliações</span>
-              </div>
-            </div>
-
-            {REVIEWS.map((review, i) => (
-              <div key={i} className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold">{review.nome}</span>
-                  <div className="flex gap-1">
-                    {[...Array(5)].map((_, j) => (
-                      <FaStar key={j} className="text-purple-600 text-sm" />
-                    ))}
-                  </div>
-                </div>
-                <p className="text-sm text-gray-700">{review.texto}</p>
-                <div className="flex flex-col gap-1 max-w-28">
-                  <button className="flex items-center gap-2 border rounded-full px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">
-                    É útil <FaThumbsUp /> (0)
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            <span className="text-purple-600 text-sm cursor-pointer underline">
-              Ver mais
-            </span>
-          </div>
+          <ReviewSection
+            productId={product.id}
+            onLoginRequest={() => setShowAuth(true)}
+            onStatsChange={(avg, total) => {
+              setReviewAverage(avg);
+              setReviewTotal(total);
+            }}
+          />
         </div>
 
         <div className="flex flex-col gap-4">
           <h1 className="text-2xl font-semibold">{product.name}</h1>
 
           <div className="flex items-center gap-1">
-            {[...Array(4)].map((_, i) => (
-              <FaStar key={i} className="text-purple-600" />
-            ))}
-            <FaStarHalfAlt className="text-purple-600" />
-            <span className="text-sm ml-1">(925)</span>
+            {[1, 2, 3, 4, 5].map((star) => {
+              if (reviewAverage >= star)
+                return (
+                  <FaStar key={star} className="text-sm text-purple-600" />
+                );
+              if (reviewAverage >= star - 0.5)
+                return (
+                  <FaStarHalfAlt
+                    key={star}
+                    className="text-sm text-purple-600"
+                  />
+                );
+              return <FaStar key={star} className="text-sm text-gray-200" />;
+            })}
+            <span className="text-sm ml-1">({reviewTotal})</span>
           </div>
 
           <div className="flex flex-col">
@@ -384,7 +338,6 @@ export default function BuyCard() {
         </div>
       </div>
 
-      {/* PRODUTOS RELACIONADOS */}
       {related.length > 0 && (
         <div className="mt-10">
           <h2 className="text-lg font-bold uppercase mb-6">
