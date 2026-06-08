@@ -16,6 +16,7 @@ import AddProduct from "./pages/AddProduct";
 import AdminRoute from "./components/AdminRoute";
 import EditProduct from "./pages/EditProduct";
 import SearchResults from "./pages/SearchResults";
+import Account from "./pages/Account";
 
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -66,7 +67,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/product/:slug"
             element={
@@ -75,7 +75,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/admin/produto/editar/:id"
             element={
@@ -86,7 +85,6 @@ createRoot(document.getElementById("root")).render(
               </AdminRoute>
             }
           />
-
           <Route
             path="/desejos"
             element={
@@ -95,7 +93,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/wishlist"
             element={
@@ -104,7 +101,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/contato"
             element={
@@ -113,7 +109,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/contact"
             element={
@@ -122,7 +117,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/about"
             element={
@@ -131,7 +125,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/sobrenos"
             element={
@@ -140,7 +133,6 @@ createRoot(document.getElementById("root")).render(
               </MainLayout>
             }
           />
-
           <Route
             path="/admin/produto"
             element={
@@ -151,12 +143,19 @@ createRoot(document.getElementById("root")).render(
               </AdminRoute>
             }
           />
-
           <Route
             path="/busca"
             element={
               <MainLayout>
                 <SearchResults />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/minha-conta"
+            element={
+              <MainLayout>
+                <Account />
               </MainLayout>
             }
           />

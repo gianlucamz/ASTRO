@@ -5,14 +5,39 @@ export async function getWishlist(req, res) {
     where: { userId: req.userId },
     include: {
       items: {
-        include: { product: true },
+        include: {
+          product: {
+            include: {
+              reviews: {
+                select: { rating: true },
+              },
+            },
+          },
+        },
       },
     },
   });
 
   if (!wishlist) return res.json({ items: [] });
 
-  res.json(wishlist);
+  const itemsWithRating = wishlist.items.map((item) => {
+    const reviews = item.product.reviews;
+    const average =
+      reviews.length > 0
+        ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+        : 0;
+
+    return {
+      ...item,
+      product: {
+        ...item.product,
+        averageRating: Math.round(average * 2) / 2,
+        reviews: undefined,
+      },
+    };
+  });
+
+  res.json({ ...wishlist, items: itemsWithRating });
 }
 
 export async function addToWishlist(req, res) {

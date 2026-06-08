@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { FaStar, FaStarHalfAlt, FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import AuthModal from "../components/login/AuthModal";
 import ReviewSection from "../components/buycard/ReviewSection";
+import StarDisplay from "../components/shared/StarDisplay";
 
 const FILEIRA_LABELS = {
   destaques: "Destaques",
@@ -249,23 +250,7 @@ export default function BuyCard() {
         <div className="flex flex-col gap-4">
           <h1 className="text-2xl font-semibold">{product.name}</h1>
 
-          <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((star) => {
-              if (reviewAverage >= star)
-                return (
-                  <FaStar key={star} className="text-sm text-purple-600" />
-                );
-              if (reviewAverage >= star - 0.5)
-                return (
-                  <FaStarHalfAlt
-                    key={star}
-                    className="text-sm text-purple-600"
-                  />
-                );
-              return <FaStar key={star} className="text-sm text-gray-200" />;
-            })}
-            <span className="text-sm ml-1">({reviewTotal})</span>
-          </div>
+          <StarDisplay rating={reviewAverage} size="text-lg" />
 
           <div className="flex flex-col">
             <span className="text-3xl font-bold text-purple-600">

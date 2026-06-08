@@ -1,28 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import {
-  IoStar,
-  IoStarHalf,
-  IoStarOutline,
-  IoCloseCircleOutline,
-} from "react-icons/io5";
-
-function StarRating({ rating }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => {
-        if (rating >= star)
-          return <IoStar key={star} size={16} className="text-purple-600" />;
-        if (rating >= star - 0.5)
-          return (
-            <IoStarHalf key={star} size={16} className="text-purple-600" />
-          );
-        return (
-          <IoStarOutline key={star} size={16} className="text-purple-600" />
-        );
-      })}
-    </div>
-  );
-}
+import { IoCloseCircleOutline } from "react-icons/io5";
+import StarDisplay from "../shared/StarDisplay";
 
 export default function WishlistItem({
   itemId,
@@ -53,7 +31,7 @@ export default function WishlistItem({
 
       <div className="flex-1 flex flex-col gap-1">
         <p className="font-bold text-gray-900 leading-snug pr-6">{name}</p>
-        <StarRating rating={rating ?? 0} />
+        <StarDisplay rating={rating ?? 0} />
         <p className="text-xs text-gray-400 mt-1">Adicionado em {addedAt}</p>
       </div>
 

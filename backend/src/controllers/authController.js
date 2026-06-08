@@ -64,3 +64,31 @@ export async function getUserById(req, res) {
 
   res.json(user);
 }
+
+export async function updateUser(req, res) {
+  const { id } = req.params;
+  const { name, email, telefone, nascimento, cpf, cnpj, password } = req.body;
+
+  const data = {};
+  if (name) data.name = name;
+  if (email) data.email = email;
+  if (telefone !== undefined) data.telefone = telefone;
+  if (nascimento !== undefined) data.nascimento = nascimento;
+  if (cpf !== undefined) data.cpf = cpf || null;
+  if (cnpj !== undefined) data.cnpj = cnpj || null;
+  if (password) data.password = await bcrypt.hash(password, 10);
+
+  const user = await prisma.user.update({
+    where: { id },
+    data,
+    select: { id: true, name: true, email: true, role: true },
+  });
+
+  res.json(user);
+}
+
+export async function deleteUser(req, res) {
+  const { id } = req.params;
+  await prisma.user.delete({ where: { id } });
+  res.status(204).send();
+}
