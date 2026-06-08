@@ -48,7 +48,6 @@ export default function EditProduct() {
     diversos: false,
   });
 
-  // Busca o produto ao montar
   useEffect(() => {
     async function fetchProduct() {
       try {

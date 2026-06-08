@@ -38,7 +38,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   function handleSearch() {
@@ -75,10 +77,9 @@ export default function Header() {
   return (
     <>
       <header
-        className="w-full bg-white relative z-40"
+        className="w-full bg-white sticky z-40"
         style={{
           boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
-          position: "sticky",
           top: 0,
         }}
       >
@@ -114,24 +115,39 @@ export default function Header() {
           />
 
           <div className="flex items-center ml-auto font-inter mr-16 gap-14">
-            <span className="cursor-pointer text-sm" onClick={() => navigate("/contact")}>
+            <span
+              className="cursor-pointer text-sm"
+              onClick={() => navigate("/contact")}
+            >
               Contato
             </span>
             <div className="flex items-center gap-1 cursor-pointer">
               <Icon name="location-outline" className="text-xl" />
               <span className="text-sm mr-2">Informe seu CEP</span>
             </div>
-            <button onClick={() => navigate("/cart")} className="cursor-pointer flex items-center">
+            <button
+              onClick={() => navigate("/cart")}
+              className="cursor-pointer flex items-center"
+            >
               <Icon name="cart-outline" className="text-3xl" />
             </button>
-            <button onClick={() => navigate("/wishlist")} className="cursor-pointer flex items-center">
+            <button
+              onClick={() => navigate("/wishlist")}
+              className="cursor-pointer flex items-center"
+            >
               <Icon name="star-outline" className="text-3xl" />
             </button>
 
             {isAuthenticated ? (
               <div className="relative" ref={menuRef}>
-                <button onClick={() => setShowUserMenu(!showUserMenu)} className="cursor-pointer flex items-center gap-2">
-                  <Icon name="person-circle-outline" className="text-3xl text-purple-600" />
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="cursor-pointer flex items-center gap-2"
+                >
+                  <Icon
+                    name="person-circle-outline"
+                    className="text-3xl text-purple-600"
+                  />
                   <span className="text-sm font-medium text-gray-700 hidden lg:block">
                     {user?.name?.split(" ")[0] ?? "Minha conta"}
                   </span>
@@ -142,35 +158,59 @@ export default function Header() {
                       <p className="text-sm font-semibold text-gray-800 truncate">
                         {user?.name?.split(" ")[0] ?? "Usuário"}
                         {user?.role === "admin" && (
-                          <span className="text-gray-800 font-normal ml-1 text-xs">(admin)</span>
+                          <span className="text-gray-800 font-normal ml-1 text-xs">
+                            (admin)
+                          </span>
                         )}
                       </p>
-                      <p className="text-xs text-gray-500 truncate">{user?.email ?? ""}</p>
+                      <p className="text-xs text-gray-500 truncate">
+                        {user?.email ?? ""}
+                      </p>
                     </div>
                     <ul className="py-1">
                       {user?.role === "admin" && (
                         <li>
-                          <button onClick={() => { navigate("/admin/produto"); setShowUserMenu(false); }}
-                            className="w-full text-left px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 cursor-pointer font-medium">
+                          <button
+                            onClick={() => {
+                              navigate("/admin/produto");
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full text-left px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 cursor-pointer font-medium"
+                          >
                             Adicionar produto
                           </button>
                         </li>
                       )}
                       <li>
-                        <button onClick={() => { navigate("/minha-conta"); setShowUserMenu(false); }}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                        <button
+                          onClick={() => {
+                            navigate("/minha-conta");
+                            setShowUserMenu(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+                        >
                           Minha conta
                         </button>
                       </li>
                       <li>
-                        <button onClick={() => { navigate("/meus-pedidos"); setShowUserMenu(false); }}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                        <button
+                          onClick={() => {
+                            navigate("/meus-pedidos");
+                            setShowUserMenu(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+                        >
                           Meus pedidos
                         </button>
                       </li>
                       <li>
-                        <button onClick={() => { setShowUserMenu(false); setShowLogoutConfirm(true); }}
-                          className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 cursor-pointer">
+                        <button
+                          onClick={() => {
+                            setShowUserMenu(false);
+                            setShowLogoutConfirm(true);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 cursor-pointer"
+                        >
                           Sair
                         </button>
                       </li>
@@ -179,7 +219,10 @@ export default function Header() {
                 )}
               </div>
             ) : (
-              <button onClick={() => setShowAuth(true)} className="cursor-pointer flex items-center">
+              <button
+                onClick={() => setShowAuth(true)}
+                className="cursor-pointer flex items-center"
+              >
                 <Icon name="person-circle-outline" className="text-3xl" />
               </button>
             )}
@@ -204,10 +247,16 @@ export default function Header() {
 
           {/* Ações direita */}
           <div className="flex items-center ml-auto gap-3">
-            <button onClick={() => setMobileSearchOpen(true)} className="flex items-center cursor-pointer">
+            <button
+              onClick={() => setMobileSearchOpen(true)}
+              className="flex items-center cursor-pointer"
+            >
               <Icon name="search-outline" className="text-2xl text-gray-600" />
             </button>
-            <button onClick={() => navigate("/cart")} className="cursor-pointer flex items-center">
+            <button
+              onClick={() => navigate("/cart")}
+              className="cursor-pointer flex items-center"
+            >
               <Icon name="cart-outline" className="text-2xl" />
             </button>
             <button
@@ -224,8 +273,14 @@ export default function Header() {
         {mobileSearchOpen && (
           <div className="lg:hidden fixed inset-0 z-50 bg-white flex flex-col">
             <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200">
-              <button onClick={() => setMobileSearchOpen(false)} className="flex items-center">
-                <Icon name="arrow-back-outline" className="text-2xl text-gray-600" />
+              <button
+                onClick={() => setMobileSearchOpen(false)}
+                className="flex items-center"
+              >
+                <Icon
+                  name="arrow-back-outline"
+                  className="text-2xl text-gray-600"
+                />
               </button>
               <input
                 autoFocus
@@ -236,7 +291,10 @@ export default function Header() {
                 placeholder="Busque na ASTRO..."
                 className="flex-1 border border-gray-300 py-2 px-4 text-sm bg-gray-100 focus:outline-none rounded"
               />
-              <button onClick={handleSearch} className="bg-gray-800 text-white text-sm px-4 py-2 rounded cursor-pointer">
+              <button
+                onClick={handleSearch}
+                className="bg-gray-800 text-white text-sm px-4 py-2 rounded cursor-pointer"
+              >
                 Buscar
               </button>
             </div>
@@ -246,16 +304,24 @@ export default function Header() {
 
       {/* Overlay gaveta */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileMenuOpen(false)} />
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
       )}
 
       {/* Gaveta */}
-      <div className={`lg:hidden fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ${
-        mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-      }`}>
+      <div
+        className={`lg:hidden fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <img src={logo} className="w-10" />
-          <button onClick={() => setMobileMenuOpen(false)} aria-label="Fechar menu">
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Fechar menu"
+          >
             <Icon name="close-outline" className="text-2xl text-gray-600" />
           </button>
         </div>
@@ -264,17 +330,27 @@ export default function Header() {
           {isAuthenticated ? (
             <div className="px-5 py-3 mb-2 bg-gray-50 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <Icon name="person-circle-outline" className="text-3xl text-purple-600" />
+                <Icon
+                  name="person-circle-outline"
+                  className="text-3xl text-purple-600"
+                />
                 <div>
-                  <p className="text-sm font-semibold text-gray-800">{user?.name?.split(" ")[0] ?? "Usuário"}</p>
-                  <p className="text-xs text-gray-500 truncate">{user?.email ?? ""}</p>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {user?.name?.split(" ")[0] ?? "Usuário"}
+                  </p>
+                  <p className="text-xs text-gray-500 truncate">
+                    {user?.email ?? ""}
+                  </p>
                 </div>
               </div>
             </div>
           ) : (
             <div className="px-5 mb-3">
               <button
-                onClick={() => { setShowAuth(true); setMobileMenuOpen(false); }}
+                onClick={() => {
+                  setShowAuth(true);
+                  setMobileMenuOpen(false);
+                }}
                 className="w-full py-2 text-sm font-medium text-white bg-gray-800 rounded cursor-pointer"
               >
                 Entrar / Criar conta
@@ -288,8 +364,11 @@ export default function Header() {
             { label: "Minha Wishlist", path: "/wishlist" },
             { label: "Meu Carrinho", path: "/cart" },
           ].map(({ label, path }) => (
-            <button key={path} onClick={() => navigate(path)}
-              className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+            <button
+              key={path}
+              onClick={() => navigate(path)}
+              className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+            >
               {label}
             </button>
           ))}
@@ -297,17 +376,23 @@ export default function Header() {
           {isAuthenticated && (
             <>
               <div className="h-px bg-gray-100 my-2 mx-5" />
-              <button onClick={() => navigate("/minha-conta")}
-                className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+              <button
+                onClick={() => navigate("/minha-conta")}
+                className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+              >
                 Minha conta
               </button>
-              <button onClick={() => navigate("/meus-pedidos")}
-                className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+              <button
+                onClick={() => navigate("/meus-pedidos")}
+                className="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+              >
                 Meus pedidos
               </button>
               {user?.role === "admin" && (
-                <button onClick={() => navigate("/admin/produto")}
-                  className="w-full text-left px-5 py-3 text-sm text-blue-600 hover:bg-blue-50 cursor-pointer font-medium">
+                <button
+                  onClick={() => navigate("/admin/produto")}
+                  className="w-full text-left px-5 py-3 text-sm text-blue-600 hover:bg-blue-50 cursor-pointer font-medium"
+                >
                   Adicionar produto
                 </button>
               )}
@@ -324,7 +409,10 @@ export default function Header() {
         {isAuthenticated && (
           <div className="border-t border-gray-100 px-5 py-4">
             <button
-              onClick={() => { setMobileMenuOpen(false); setShowLogoutConfirm(true); }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setShowLogoutConfirm(true);
+              }}
               className="w-full text-left text-sm text-red-500 hover:text-red-600 cursor-pointer"
             >
               Sair da conta

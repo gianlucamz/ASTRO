@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import "./index.css";
 
 import MainLayout from "./layouts/MainLayout";
+import AltLayout from "./layouts/AltLayout";
 
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -18,7 +19,6 @@ import EditProduct from "./pages/EditProduct";
 import SearchResults from "./pages/SearchResults";
 import Account from "./pages/Account";
 
-import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
 
 createRoot(document.getElementById("root")).render(
@@ -38,17 +38,17 @@ createRoot(document.getElementById("root")).render(
           <Route
             path="/cart"
             element={
-              <MainLayout>
+              <AltLayout>
                 <Cart />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/carrinho"
             element={
-              <MainLayout>
+              <AltLayout>
                 <Cart />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
@@ -79,58 +79,58 @@ createRoot(document.getElementById("root")).render(
             path="/admin/produto/editar/:id"
             element={
               <AdminRoute>
-                <MainLayout>
+                <AltLayout>
                   <EditProduct />
-                </MainLayout>
+                </AltLayout>
               </AdminRoute>
             }
           />
           <Route
             path="/desejos"
             element={
-              <MainLayout>
+              <AltLayout>
                 <WishList />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/wishlist"
             element={
-              <MainLayout>
+              <AltLayout>
                 <WishList />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/contato"
             element={
-              <MainLayout>
+              <AltLayout>
                 <Contact />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/contact"
             element={
-              <MainLayout>
+              <AltLayout>
                 <Contact />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/about"
             element={
-              <MainLayout>
+              <AltLayout>
                 <About />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
             path="/sobrenos"
             element={
-              <MainLayout>
+              <AltLayout>
                 <About />
-              </MainLayout>
+              </AltLayout>
             }
           />
           <Route
@@ -154,9 +154,9 @@ createRoot(document.getElementById("root")).render(
           <Route
             path="/minha-conta"
             element={
-              <MainLayout>
+              <AltLayout>
                 <Account />
-              </MainLayout>
+              </AltLayout>
             }
           />
         </Routes>

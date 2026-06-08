@@ -29,7 +29,7 @@ export default function Sidebar() {
 
   return (
     <div className="hidden lg:flex bg-gray-100">
-      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0 sticky top-16 h-[calc(100vh-4rem)]">
+      <aside className="hidden lg:flex w-56 bg-white border-r border-gray-200 flex-col justify-between py-6 px-4 shrink-0 sticky top-16 self-start h-[calc(100vh-4rem)]">
         <nav className="flex flex-col gap-6">
           {menuSections.map((section) => (
             <div key={section.title} className="border-b border-gray-400 pb-4">

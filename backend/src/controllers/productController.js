@@ -125,3 +125,13 @@ export async function deleteProduct(req, res) {
   await prisma.product.delete({ where: { id } });
   res.status(204).send();
 }
+
+export async function getProductById(req, res) {
+  const { id } = req.params;
+
+  const product = await prisma.product.findUnique({ where: { id } });
+  if (!product)
+    return res.status(404).json({ error: "Produto não encontrado" });
+
+  res.json(product);
+}
