@@ -7,6 +7,8 @@ import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import addresRoutes from "./routes/addressRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
+import wishlistRoutes from "./routes/wishlistRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -18,5 +20,7 @@ app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/orders", orderRoutes);
 app.use("/addresses", addresRoutes);
+app.use("/reviews", reviewRoutes);
+app.use("/wishlist", wishlistRoutes);
 
 export default app;
