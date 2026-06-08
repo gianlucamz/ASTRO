@@ -5,13 +5,16 @@ export default function About() {
   return (
     <main className="text-black bg-white">
       {/* HERO */}
-      <section className="relative w-full min-h-[520px] overflow-hidden">
-        <img
-          src={bannerDivulgacao}
-          alt="Banner ASTRO"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </section>
+       <section
+        className="relative w-full overflow-hidden"
+        style={{
+          backgroundImage: `url(${bannerDivulgacao})`,
+          backgroundSize: "cover",
+          backgroundPosition: "left center",
+          minHeight: "clamp(280px, 75vw, 520px)",
+        }}
+      />
+
 
       {/* QUEM SOMOS */}
       <section className="px-6 py-20 mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
