@@ -98,15 +98,35 @@ export default function BuyCard() {
 
   async function handleDelete() {
     setDeleting(true);
+
     try {
       const token = localStorage.getItem("token");
+
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/products/${product.id}`,
-        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } },
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
-      if (res.ok) navigate("/");
-    } catch {
+
+      const text = await res.text();
+
+      console.log("RESPOSTA:", text);
+
+      if (!res.ok) {
+        throw new Error(text || "Erro ao deletar");
+      }
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    } finally {
       setDeleting(false);
+      setConfirmDelete(false);
     }
   }
 

@@ -22,6 +22,8 @@ export default function ProductRow({ fileira, title }) {
 
   if (products.length === 0) return null;
 
+  const produtosVisiveis = products.slice(inicio, inicio + visiveis);
+
   function avancar() {
     if (inicio + visiveis < products.length) setInicio(inicio + visiveis);
   }
