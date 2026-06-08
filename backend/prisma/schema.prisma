@@ -13,32 +13,32 @@ enum UserRole {
 }
 
 model User {
-  id         String    @id @default(cuid())
+  id         String   @id @default(cuid())
   name       String
-  email      String    @unique
-  cpf        String?   @unique
-  cnpj       String?   @unique
+  email      String   @unique
+  cpf        String?  @unique
+  cnpj       String?  @unique
   telefone   String?
   nascimento String?
   password   String
-  role       String    @default("customer")
-  createdAt  DateTime  @default(now())
+  role       UserRole @default(customer)
+  createdAt  DateTime @default(now())
 
   addresses Address[]
   orders    Order[]
   cart      Cart?
   wishlist  Wishlist?
-  reviews   Review[] 
+  reviews   Review[]
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String
   description String
   price       Float
-  stock       Int      @default(0)
+  stock       Int     @default(0)
   imageUrl    String?
-  slug        String   @unique
+  slug        String  @unique
 
   destaques    Boolean @default(false)
   promocoes    Boolean @default(false)
@@ -54,20 +54,21 @@ model Product {
   orderItems    OrderItem[]
   cartItems     CartItem[]
   wishlistItems WishlistItem[]
-  reviews       Review[] 
+  reviews       Review[]
 }
 
 model Review {
   id        String   @id @default(cuid())
-  rating    Float    // era Int
+  rating    Float
   comment   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  userId    String
-  user      User    @relation(fields: [userId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
   productId String
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId])
 }
@@ -111,13 +112,14 @@ model OrderItem {
   order   Order  @relation(fields: [orderId], references: [id])
 
   productId String
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Cart {
   id     String @id @default(cuid())
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 
   items CartItem[]
 }
@@ -130,13 +132,14 @@ model CartItem {
   cart   Cart   @relation(fields: [cartId], references: [id])
 
   productId String
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Wishlist {
   id     String @id @default(cuid())
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 
   items WishlistItem[]
 }
@@ -148,5 +151,5 @@ model WishlistItem {
   wishlist   Wishlist @relation(fields: [wishlistId], references: [id])
 
   productId String
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }

@@ -44,17 +44,6 @@ export async function getProduct(req, res) {
   res.json(product);
 }
 
-// Busca por id (usada pelo EditProduct)
-export async function getProductById(req, res) {
-  const { id } = req.params;
-
-  const product = await prisma.product.findUnique({ where: { id } });
-  if (!product)
-    return res.status(404).json({ error: "Produto não encontrado" });
-
-  res.json(product);
-}
-
 export async function createProduct(req, res) {
   const {
     name,
@@ -121,8 +110,7 @@ export async function updateProduct(req, res) {
       .map((f) => [f, req.body[f]]),
   );
 
-  // Corrigido: era { ...exists, ...raw }, passava id/createdAt/updatedAt pro Prisma
-  const data = resolveCategories(raw);
+  const data = resolveCategories({ ...exists, ...raw });
 
   const product = await prisma.product.update({ where: { id }, data });
   res.json(product);
