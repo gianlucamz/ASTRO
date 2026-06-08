@@ -28,8 +28,8 @@ export default function Sidebar() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex bg-gray-100">
-      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0 sticky top-0 h-screen">
+    <div className="hidden lg:flex bg-gray-100">
+      <aside className="w-56 bg-white border-r border-gray-200 flex flex-col justify-between py-6 px-4 shrink-0 sticky top-16 h-[calc(100vh-4rem)]">
         <nav className="flex flex-col gap-6">
           {menuSections.map((section) => (
             <div key={section.title} className="border-b border-gray-400 pb-4">
@@ -43,7 +43,7 @@ export default function Sidebar() {
                       onClick={() => setActiveItem(item)}
                       className={`w-full text-left text-sm px-2 py-1 rounded-md transition-colors cursor-pointer ${
                         activeItem === item
-                          ? " text-gray-700 font-medium"
+                          ? "text-gray-700 font-medium"
                           : "text-gray-800 hover:bg-gray-100 hover:text-gray-900"
                       }`}
                     >
@@ -56,7 +56,7 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        <div className="text-sm font-semibold text-purple-900 text-center px-2 bg-purple-50 border border-purple-200 rounded-lg py-2 px-3 ">
+        <div className="text-sm font-semibold text-purple-900 text-center bg-purple-50 border border-purple-200 rounded-lg py-2 px-3">
           <a className="cursor-pointer" onClick={() => navigate("/about")}>
             Frete grátis para todo o Litoral Norte - SP
           </a>

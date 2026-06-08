@@ -5,6 +5,8 @@ import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 export default function ProductRow({ fileira, title }) {
   const [products, setProducts] = useState([]);
   const [inicio, setInicio] = useState(0);
+
+  // Quantidade visível só se aplica no desktop (botões nav)
   const visiveis = 5;
 
   useEffect(() => {
@@ -14,40 +16,56 @@ export default function ProductRow({ fileira, title }) {
       .catch(console.error);
   }, [fileira]);
 
-  // Não renderiza a fileira se não houver produtos
   if (products.length === 0) return null;
 
   function avancar() {
-    if (inicio + visiveis < products.length) setInicio(inicio + 3);
+    if (inicio + visiveis < products.length) setInicio(inicio + visiveis);
   }
 
   function voltar() {
-    if (inicio > 0) setInicio(inicio - 3);
+    if (inicio > 0) setInicio(Math.max(0, inicio - visiveis));
   }
-
-  const produtosVisiveis = products.slice(inicio, inicio + visiveis);
 
   return (
     <div className="bg-white rounded-xl p-4 mb-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-gray-900">{title}</h2>
+        <h2 className="text-base md:text-xl font-bold text-gray-900">{title}</h2>
       </div>
-      <div className="relative flex items-center">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide">
-          {produtosVisiveis.map((product) => (
+
+      {/* Mobile e tablet: scroll nativo */}
+      <div className="lg:hidden overflow-x-auto -mx-4 px-4" style={{ WebkitOverflowScrolling: "touch" }}>
+        <div className="flex gap-3 pb-2" style={{ width: "max-content" }}>
+          {products.map((product) => (
             <ProductCard
               key={product.id}
-              image={product.imageUrl} 
+              image={product.imageUrl}
               name={product.name}
               price={product.price}
-              slug={product.slug} // adiciona isso
+              slug={product.slug}
+              className="min-w-[150px] max-w-[150px] md:min-w-[200px] md:max-w-[200px]"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: paginação com botões */}
+      <div className="hidden lg:block relative">
+        <div className="flex gap-4">
+          {products.slice(inicio, inicio + visiveis).map((product) => (
+            <ProductCard
+              key={product.id}
+              image={product.imageUrl}
+              name={product.name}
+              price={product.price}
+              slug={product.slug}
+              className="min-w-[260px] max-w-[260px]"
             />
           ))}
         </div>
         {inicio > 0 && (
           <button
             onClick={voltar}
-            className="absolute -left-14 bg-white shadow rounded-full p-2 cursor-pointer"
+            className="absolute -left-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-2 cursor-pointer"
           >
             <IoChevronBack size={24} className="text-gray-600" />
           </button>
@@ -55,7 +73,7 @@ export default function ProductRow({ fileira, title }) {
         {inicio + visiveis < products.length && (
           <button
             onClick={avancar}
-            className="absolute right-6 bg-white shadow rounded-full p-2 ml-2 cursor-pointer"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-2 cursor-pointer"
           >
             <IoChevronForward size={24} className="text-gray-600" />
           </button>

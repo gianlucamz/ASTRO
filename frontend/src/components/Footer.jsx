@@ -12,131 +12,63 @@ export default function Footer() {
 
   return (
     <footer
-      className="bg-white border-t border-gray-200 pt-10 pb-2 px-8 mt-8 font-inter"
-      style={{
-        boxShadow: "0px -8px 16px rgba(0,0,0,0.18)",
-      }}
+      className="bg-white border-t border-gray-200 pt-10 pb-2 px-6 md:px-8 mt-8 font-inter"
+      style={{ boxShadow: "0px -8px 16px rgba(0,0,0,0.18)" }}
     >
-      <div className="flex items-start gap-16">
-        <div className="flex flex-col gap-4 px-6">
+      <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
+
+        {/* Logo + redes sociais */}
+        <div className="flex flex-col gap-4 px-0 md:px-6">
           <img
             src={logo}
             alt="ASTRO"
-            className="h-14 w-auto cursor-pointer"
+            className="h-10 w-auto max-w-[160px] cursor-pointer"
             onClick={() => navigate("/")}
           />
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
             <p className="text-sm text-black">Siga-nos</p>
             <div className="flex gap-1">
               <IoLogoFacebook size={19} className="text-black cursor-pointer" />
-              <IoLogoInstagram
-                size={19}
-                className="text-black cursor-pointer"
-              />
+              <IoLogoInstagram size={19} className="text-black cursor-pointer" />
             </div>
           </div>
         </div>
 
-        <div className="flex gap-24 flex-1 justify-end mr-[18%]">
+        {/* Colunas de links */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1 md:mr-[18%]">
           <div>
-            <h3 className="text-sm font-bold text-gray-900">INSTITUCIONAL</h3>
-            <ul className="flex flex-col gap-0 leading-1">
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => navigate("/about")}
-                >
-                  Sobre nós
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
-                  ASTRO Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs  text-gray-700 font-semibold">
-                  Trabalhe conosco
-                </a>
-              </li>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">INSTITUCIONAL</h3>
+            <ul className="flex flex-col gap-1">
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => navigate("/about")}>Sobre nós</a></li>
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">ASTRO Blog</a></li>
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">Trabalhe conosco</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-gray-900">ATENDIMENTO</h3>
-            <ul className="flex flex-col gap-0 leading-1">
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => navigate("/contact")}
-                >
-                  Fale conosco
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => navigate("/contact")}
-                >
-                  Trocas & devoluções
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => navigate("/contact")}
-                >
-                  FAQ
-                </a>
-              </li>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">ATENDIMENTO</h3>
+            <ul className="flex flex-col gap-1">
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => navigate("/contact")}>Fale conosco</a></li>
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => navigate("/contact")}>Trocas & devoluções</a></li>
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => navigate("/contact")}>FAQ</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-gray-900">MINHA CONTA</h3>
-            <ul className="flex flex-col gap-0 leading-1">
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => setShowAuth(true)}
-                >
-                  Login/Cadastro
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
-                  Meus pedidos
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xs text-gray-700 font-semibold cursor-pointer"
-                  onClick={() => navigate("/wishlist")}
-                >
-                  Lista de desejos
-                </a>
-              </li>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">MINHA CONTA</h3>
+            <ul className="flex flex-col gap-1">
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => setShowAuth(true)}>Login/Cadastro</a></li>
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">Meus pedidos</a></li>
+              <li><a className="text-xs text-gray-700 font-semibold cursor-pointer" onClick={() => navigate("/wishlist")}>Lista de desejos</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-bold text-gray-900">POLÍTICAS</h3>
-            <ul className="flex flex-col gap-0 leading-1">
-              <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
-                  Termos de uso
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
-                  Política de privacidade
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-gray-700 font-semibold">
-                  Política de cookies
-                </a>
-              </li>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">POLÍTICAS</h3>
+            <ul className="flex flex-col gap-1">
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">Termos de uso</a></li>
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">Política de privacidade</a></li>
+              <li><a href="#" className="text-xs text-gray-700 font-semibold">Política de cookies</a></li>
             </ul>
           </div>
         </div>

@@ -16,12 +16,12 @@ export default function AuthModal({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex items-start md:items-center justify-center overflow-y-auto"
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       onClick={tela === "loginSucesso" ? undefined : onClose}
     >
       <div
-        className="bg-white p-8 w-full max-w-2xl relative"
+        className="bg-white p-5 md:p-8 w-full max-w-2xl relative my-4 md:my-8 mx-4"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -31,7 +31,7 @@ export default function AuthModal({ onClose }) {
           <IoCloseOutline size={24} />
         </button>
 
-        <h2 className="text-xl font-bold text-gray-900 mb-6">
+        <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-5 md:mb-6">
           {titulos[tela]}
         </h2>
 
