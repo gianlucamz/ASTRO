@@ -24,7 +24,7 @@ export default function Home() {
         <ProductRow fileira="smartphones" title="Smartphones" />
         <ProductRow fileira="games" title="Games" />
         <ProductRow fileira="diversos" title="Diversos" />
-        <div className="mt-10 md:mt-14 mb-14">
+       <div className="mt-6 md:mt-8 mb-1">
           <img
             src={BannerLitoral}
             alt="Frete grátis para todo o Litoral Norte - SP"

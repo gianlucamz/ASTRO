@@ -22,10 +22,7 @@ export default function Wishlist() {
   }, []);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      setLoading(false);
-      return;
-    }
+    if (!isAuthenticated) { setLoading(false); return; }
     fetchWishlist().finally(() => setLoading(false));
   }, [isAuthenticated, fetchWishlist]);
 
@@ -51,13 +48,8 @@ export default function Wishlist() {
   if (!isAuthenticated)
     return (
       <div className="flex flex-col items-center justify-center h-96 gap-4">
-        <p className="text-lg font-semibold text-gray-700">
-          Faça login para ver sua lista de desejos
-        </p>
-        <button
-          onClick={() => setShowAuth(true)}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg text-sm cursor-pointer"
-        >
+        <p className="text-lg font-semibold text-gray-700">Faça login para ver sua lista de desejos</p>
+        <button onClick={() => setShowAuth(true)} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg text-sm cursor-pointer">
           Entrar
         </button>
         {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
@@ -67,25 +59,20 @@ export default function Wishlist() {
   if (items.length === 0)
     return (
       <div className="flex flex-col items-center justify-center h-96 gap-4">
-        <p className="text-lg font-semibold text-gray-700">
-          Sua lista de desejos está vazia
-        </p>
-        <button
-          onClick={() => navigate("/")}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg text-sm cursor-pointer"
-        >
+        <p className="text-lg font-semibold text-gray-700">Sua lista de desejos está vazia</p>
+        <button onClick={() => navigate("/")} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg text-sm cursor-pointer">
           Explorar produtos
         </button>
       </div>
     );
 
   return (
-    <div className="w-full px-16 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6 ml-10">
+    <div className="w-full px-4 md:px-10 lg:px-16 py-6 md:py-8">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 lg:ml-10">
         Lista de desejos
       </h1>
-      <div className="flex gap-6 items-start">
-        <div className="flex-1 flex flex-col gap-4">
+      <div className="flex flex-col lg:flex-row gap-6 items-start">
+        <div className="flex-1 min-w-0 flex flex-col gap-4 w-full">
           {items.map((item) => (
             <WishlistItem
               key={item.id}
@@ -95,12 +82,8 @@ export default function Wishlist() {
               price={item.product.price}
               rating={item.product.averageRating ?? 0}
               slug={item.product.slug}
-              addedAt={new Date(
-                item.wishlist?.createdAt ?? Date.now(),
-              ).toLocaleDateString("pt-BR", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
+              addedAt={new Date(item.wishlist?.createdAt ?? Date.now()).toLocaleDateString("pt-BR", {
+                day: "numeric", month: "long", year: "numeric",
               })}
               onRemove={handleRemove}
             />

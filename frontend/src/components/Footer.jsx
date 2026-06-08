@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
 
         {/* Logo + redes sociais */}
-        <div className="flex flex-col gap-4 px-0 md:px-6">
+        <div className="flex flex-col gap-4 px-0 md:px-6 items-start">
           <img
             src={logo}
             alt="ASTRO"
