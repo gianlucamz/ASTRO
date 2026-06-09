@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { api } from "../../services/api";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 export default function LoginForm({ onSwitchToCadastro, onClose, onSuccess }) {
@@ -12,26 +13,18 @@ export default function LoginForm({ onSwitchToCadastro, onClose, onSuccess }) {
     const form = e.target;
 
     try {
-      const response = await fetch("http://localhost:3333/auth/login", {
+      const data = await api("/auth/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: form.email.value,
           password: form.password.value,
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.error || "Erro ao fazer login");
-        return;
-      }
-
       login(data.user, data.token);
       onSuccess();
-    } catch {
-      alert("Erro ao conectar com o servidor");
+    } catch (err) {
+      alert(err.message || "Erro ao conectar com o servidor");
     }
   }
 
