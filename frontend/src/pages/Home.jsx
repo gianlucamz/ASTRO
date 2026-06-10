@@ -11,7 +11,6 @@ export default function Home() {
         <Hero />
         <ProductRow fileira="destaques" title="Destaques" />
         <ProductRow fileira="promocoes" title="Promoções" />
-        <BrandRow />
         <ProductRow fileira="hardware" title="Hardware" />
         <ProductRow fileira="perifericos" title="Periféricos" />
         <ProductRow fileira="computadores" title="Computadores" />
