@@ -11,7 +11,12 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://astro-tech.up.railway.app",
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.use("/auth", authRoutes);
