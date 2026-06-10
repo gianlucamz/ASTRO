@@ -34,12 +34,15 @@ export async function login(req, res) {
   if (!valid) return res.status(401).json({ error: "Credenciais inválidas" });
 
   const token = jwt.sign(
-    { id: user.id, role: user.role },
+    { id: user.id, name: user.name, email: user.email, role: user.role },
     process.env.JWT_SECRET,
     { expiresIn: "7d" },
   );
 
-  res.json({ token, user: { id: user.id, name: user.name, role: user.role } });
+  res.json({
+    token,
+    user: { id: user.id, name: user.name, email: user.email, role: user.role },
+  });
 }
 
 export async function getUsers(req, res) {
