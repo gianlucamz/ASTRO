@@ -21,6 +21,17 @@ export default function Header() {
 
   const { user, logout, isAuthenticated } = useAuth();
 
+  // CEP
+  const [showCepModal, setShowCepModal] = useState(false);
+  const [cepInput, setCepInput] = useState("");
+  const [cepInfo, setCepInfo] = useState(() => {
+    const saved = localStorage.getItem("astro_cep");
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [cepError, setCepError] = useState("");
+  const [cepLoading, setCepLoading] = useState(false);
+  const [cepFound, setCepFound] = useState(null);
+
   const [query, setQuery] = useState(() => {
     const params = new URLSearchParams(location.search);
     return params.get("q") || "";
@@ -67,23 +78,86 @@ export default function Header() {
   }, []);
 
   function handleLogoutConfirmed() {
+    localStorage.removeItem("astro_cep");
+    setCepInfo(null);
+
     logout();
+
     setShowLogoutConfirm(false);
     setShowUserMenu(false);
     setMobileMenuOpen(false);
+
     navigate("/");
+  }
+
+  async function handleBuscarCep() {
+    const cep = cepInput.replace(/\D/g, "");
+    if (cep.length !== 8) {
+      setCepError("CEP inválido. Digite 8 números.");
+      return;
+    }
+    setCepLoading(true);
+    setCepError("");
+    setCepFound(null);
+    try {
+      const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await res.json();
+      if (data.erro) {
+        setCepError("CEP não encontrado.");
+      } else {
+        setCepFound(data);
+      }
+    } catch {
+      setCepError("Erro ao buscar CEP. Tente novamente.");
+    } finally {
+      setCepLoading(false);
+    }
+  }
+
+  async function handleConfirmarCep() {
+    if (!cepFound) return;
+    const info = {
+      cep: cepFound.cep,
+      cidade: cepFound.localidade,
+      uf: cepFound.uf,
+    };
+    setCepInfo(info);
+    localStorage.setItem("astro_cep", JSON.stringify(info));
+
+    if (isAuthenticated) {
+      try {
+        const token = localStorage.getItem("token");
+        await fetch(`${import.meta.env.VITE_API_URL}/auth/users/${user.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ cep: cepFound.cep }),
+        });
+      } catch {}
+    }
+
+    setShowCepModal(false);
+    setCepInput("");
+    setCepFound(null);
+    setCepError("");
+  }
+
+  function handleAbrirCep() {
+    setShowCepModal(true);
+    setCepInput("");
+    setCepFound(null);
+    setCepError("");
   }
 
   return (
     <>
       <header
         className="w-full bg-white sticky z-40"
-        style={{
-          boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
-          top: 0,
-        }}
+        style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.18)", top: 0 }}
       >
-        {/* ── Desktop: layout 100% original ── */}
+        {/* Desktop */}
         <div className="hidden lg:flex items-center">
           <div className="p-1 ml-14 flex gap-14 items-center">
             <img
@@ -121,10 +195,19 @@ export default function Header() {
             >
               Contato
             </span>
-            <div className="flex items-center gap-1 cursor-pointer">
+
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={handleAbrirCep}
+            >
               <Icon name="location-outline" className="text-xl" />
-              <span className="text-sm mr-2">Informe seu CEP</span>
+              <span className="text-sm mr-2">
+                {cepInfo
+                  ? `${cepInfo.cidade} - ${cepInfo.uf}`
+                  : "Informe seu CEP"}
+              </span>
             </div>
+
             <button
               onClick={() => navigate("/cart")}
               className="cursor-pointer flex items-center"
@@ -229,23 +312,18 @@ export default function Header() {
           </div>
         </div>
 
-        {/* ── Mobile e tablet ── */}
+        {/* Mobile */}
         <div className="flex lg:hidden items-center h-16 px-4 relative">
-          {/* Logo */}
           <img
             src={logo}
             className="w-12 max-w-none cursor-pointer flex-shrink-0"
             onClick={() => navigate("/")}
           />
-
-          {/* Título centralizado */}
           <img
             src={title}
             className="h-9 absolute left-1/2 -translate-x-1/2 cursor-pointer"
             onClick={() => navigate("/")}
           />
-
-          {/* Ações direita */}
           <div className="flex items-center ml-auto gap-3">
             <button
               onClick={() => setMobileSearchOpen(true)}
@@ -269,7 +347,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Busca mobile (tela cheia) */}
+        {/* Busca mobile */}
         {mobileSearchOpen && (
           <div className="lg:hidden fixed inset-0 z-50 bg-white flex flex-col">
             <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200">
@@ -310,7 +388,7 @@ export default function Header() {
         />
       )}
 
-      {/* Gaveta */}
+      {/* Gaveta mobile */}
       <div
         className={`lg:hidden fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -400,9 +478,16 @@ export default function Header() {
           )}
 
           <div className="h-px bg-gray-100 my-2 mx-5" />
-          <div className="flex items-center gap-2 px-5 py-3 cursor-pointer">
+          <div
+            className="flex items-center gap-2 px-5 py-3 cursor-pointer"
+            onClick={handleAbrirCep}
+          >
             <Icon name="location-outline" className="text-xl text-gray-500" />
-            <span className="text-sm text-gray-700">Informe seu CEP</span>
+            <span className="text-sm text-gray-700">
+              {cepInfo
+                ? `${cepInfo.cidade} - ${cepInfo.uf}`
+                : "Informe seu CEP"}
+            </span>
           </div>
         </div>
 
@@ -420,6 +505,74 @@ export default function Header() {
           </div>
         )}
       </div>
+
+      {/* Modal CEP */}
+      {showCepModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          onClick={() => setShowCepModal(false)}
+        >
+          <div
+            className="bg-white rounded-xl p-6 w-full max-w-sm flex flex-col gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-lg font-bold text-gray-900">Informe seu CEP</h2>
+
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={cepInput}
+                onChange={(e) =>
+                  setCepInput(e.target.value.replace(/\D/g, "").slice(0, 8))
+                }
+                onKeyDown={(e) => e.key === "Enter" && handleBuscarCep()}
+                placeholder="00000-000"
+                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-400"
+                maxLength={8}
+              />
+              <button
+                onClick={handleBuscarCep}
+                disabled={cepLoading}
+                className="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg cursor-pointer disabled:opacity-60"
+              >
+                {cepLoading ? "..." : "Buscar"}
+              </button>
+            </div>
+
+            {cepError && <p className="text-sm text-red-500">{cepError}</p>}
+
+            {cepFound && (
+              <div className="bg-gray-50 rounded-lg p-3 flex flex-col gap-1">
+                <p className="text-sm font-semibold text-gray-800">
+                  {cepFound.localidade} - {cepFound.uf}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {cepFound.logradouro}
+                  {cepFound.bairro ? `, ${cepFound.bairro}` : ""}
+                </p>
+                <p className="text-xs text-gray-400">CEP: {cepFound.cep}</p>
+              </div>
+            )}
+
+            {cepFound && (
+              <button
+                onClick={handleConfirmarCep}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg cursor-pointer"
+              >
+                Confirmar localização
+              </button>
+            )}
+
+            <button
+              onClick={() => setShowCepModal(false)}
+              className="text-sm text-gray-400 hover:text-gray-600 cursor-pointer text-center"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       {showLogoutConfirm && (

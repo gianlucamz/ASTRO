@@ -5,13 +5,10 @@ import BrandCard from "./BrandCard";
 
 const brands = [
   { id: 1, name: "INTEL", image: IntelCard },
-  { id: 2, name: "INTEL", image: IntelCard },
-  { id: 3, name: "INTEL", image: IntelCard },
-  { id: 4, name: "INTEL", image: IntelCard },
-  { id: 5, name: "INTEL", image: IntelCard },
-  { id: 6, name: "INTEL", image: IntelCard },
-  { id: 7, name: "INTEL", image: IntelCard },
-  { id: 8, name: "INTEL", image: IntelCard },
+  { id: 2, name: "AMD", image: IntelCard },
+  { id: 3, name: "Samsung", image: IntelCard },
+  { id: 4, name: "Logitech", image: IntelCard },
+  { id: 5, name: "Sony", image: IntelCard },
 ];
 
 const visiveis = 5;

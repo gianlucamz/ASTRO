@@ -1,0 +1,370 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function main() {
+  const products = [
+    // Hardware - Intel e AMD
+    {
+      name: "Processador Intel Core i9-13900K",
+      description: "Processador de alta performance para desktop",
+      price: 2899.99, stock: 10,
+      imageUrl: "https://placehold.co/300x300?text=i9-13900K",
+      slug: "processador-intel-i9-13900k",
+      hardware: true, destaques: true, brand: "Intel",
+    },
+    {
+      name: "Memória RAM DDR5 32GB Kingston",
+      description: "Memória RAM DDR5 3200MHz",
+      price: 599.99, stock: 20,
+      imageUrl: "https://placehold.co/300x300?text=RAM+DDR5",
+      slug: "memoria-ram-ddr5-32gb",
+      hardware: true, promocoes: true, brand: "Intel",
+    },
+    {
+      name: "SSD NVMe Samsung 1TB",
+      description: "SSD NVMe M.2 de alta velocidade",
+      price: 399.99, stock: 15,
+      imageUrl: "https://placehold.co/300x300?text=SSD+1TB",
+      slug: "ssd-nvme-1tb",
+      hardware: true, brand: "Samsung",
+    },
+    {
+      name: "Processador AMD Ryzen 9 7900X",
+      description: "Processador AMD de alta performance",
+      price: 2499.99, stock: 8,
+      imageUrl: "https://placehold.co/300x300?text=Ryzen+9",
+      slug: "processador-amd-ryzen-9-7900x",
+      hardware: true, destaques: true, brand: "AMD",
+    },
+    {
+      name: "Placa de Vídeo AMD RX 7800 XT",
+      description: "GPU AMD para jogos em 1440p",
+      price: 3199.99, stock: 6,
+      imageUrl: "https://placehold.co/300x300?text=RX+7800XT",
+      slug: "placa-video-amd-rx-7800xt",
+      hardware: true, brand: "AMD",
+    },
+    {
+      name: "Placa de Vídeo NVIDIA RTX 4070",
+      description: "GPU NVIDIA para jogos em 4K",
+      price: 3999.99, stock: 5,
+      imageUrl: "https://placehold.co/300x300?text=RTX+4070",
+      slug: "placa-video-nvidia-rtx-4070",
+      hardware: true, promocoes: true, brand: "AMD",
+    },
+
+    // Periféricos - Logitech e Sony
+    {
+      name: "Mouse Gamer Logitech G502",
+      description: "Mouse gamer com sensor HERO 25K",
+      price: 349.99, stock: 25,
+      imageUrl: "https://placehold.co/300x300?text=G502",
+      slug: "mouse-logitech-g502",
+      perifericos: true, destaques: true, brand: "Logitech",
+    },
+    {
+      name: "Teclado Mecânico Logitech G915",
+      description: "Teclado mecânico sem fio RGB",
+      price: 899.99, stock: 12,
+      imageUrl: "https://placehold.co/300x300?text=G915",
+      slug: "teclado-logitech-g915",
+      perifericos: true, brand: "Logitech",
+    },
+    {
+      name: "Headset Gamer Logitech G733",
+      description: "Headset sem fio com RGB",
+      price: 699.99, stock: 10,
+      imageUrl: "https://placehold.co/300x300?text=G733",
+      slug: "headset-logitech-g733",
+      perifericos: true, promocoes: true, brand: "Logitech",
+    },
+    {
+      name: "Headset Sony WH-1000XM5",
+      description: "Headset com cancelamento de ruído",
+      price: 1899.99, stock: 8,
+      imageUrl: "https://placehold.co/300x300?text=WH1000XM5",
+      slug: "headset-sony-wh1000xm5",
+      perifericos: true, destaques: true, brand: "Sony",
+    },
+    {
+      name: "Webcam Logitech C920",
+      description: "Webcam Full HD 1080p",
+      price: 399.99, stock: 18,
+      imageUrl: "https://placehold.co/300x300?text=C920",
+      slug: "webcam-logitech-c920",
+      perifericos: true, brand: "Logitech",
+    },
+    {
+      name: "Mouse Pad Logitech G840 XL",
+      description: "Mouse pad gamer extra grande",
+      price: 199.99, stock: 30,
+      imageUrl: "https://placehold.co/300x300?text=G840+XL",
+      slug: "mousepad-logitech-g840",
+      perifericos: true, promocoes: true, brand: "Logitech",
+    },
+
+    // Computadores - Samsung e AMD
+    {
+      name: "PC Gamer Completo RTX 4070",
+      description: "PC Gamer montado com RTX 4070 e i7",
+      price: 7999.99, stock: 5,
+      imageUrl: "https://placehold.co/300x300?text=PC+Gamer",
+      slug: "pc-gamer-rtx-4070",
+      computadores: true, destaques: true, brand: "Intel",
+    },
+    {
+      name: "Notebook Samsung Galaxy Book3",
+      description: "Notebook premium Samsung com Intel i7",
+      price: 4999.99, stock: 7,
+      imageUrl: "https://placehold.co/300x300?text=Galaxy+Book3",
+      slug: "notebook-samsung-galaxy-book3",
+      computadores: true, destaques: true, brand: "Samsung",
+    },
+    {
+      name: "Notebook Dell Inspiron 15",
+      description: "Notebook para uso profissional",
+      price: 3499.99, stock: 8,
+      imageUrl: "https://placehold.co/300x300?text=Dell+Inspiron",
+      slug: "notebook-dell-inspiron-15",
+      computadores: true, promocoes: true, brand: "Intel",
+    },
+    {
+      name: "PC Gamer AMD Ryzen 7",
+      description: "PC Gamer com Ryzen 7 e RX 7700",
+      price: 5999.99, stock: 4,
+      imageUrl: "https://placehold.co/300x300?text=PC+AMD",
+      slug: "pc-gamer-amd-ryzen-7",
+      computadores: true, brand: "AMD",
+    },
+    {
+      name: "Mini PC Intel NUC",
+      description: "Mini computador compacto Intel",
+      price: 2199.99, stock: 10,
+      imageUrl: "https://placehold.co/300x300?text=Intel+NUC",
+      slug: "mini-pc-intel-nuc",
+      computadores: true, brand: "Intel",
+    },
+    {
+      name: "All-in-One Samsung 27\"",
+      description: "Computador tudo-em-um com tela 27 polegadas",
+      price: 5499.99, stock: 5,
+      imageUrl: "https://placehold.co/300x300?text=AIO+Samsung",
+      slug: "all-in-one-samsung-27",
+      computadores: true, promocoes: true, brand: "Samsung",
+    },
+
+    // Smartphones - Samsung e Sony
+    {
+      name: "Samsung Galaxy S24 Ultra",
+      description: "Smartphone topo de linha Samsung",
+      price: 6999.99, stock: 10,
+      imageUrl: "https://placehold.co/300x300?text=S24+Ultra",
+      slug: "samsung-galaxy-s24-ultra",
+      smartphones: true, destaques: true, brand: "Samsung",
+    },
+    {
+      name: "Samsung Galaxy S24",
+      description: "Smartphone premium Samsung",
+      price: 4999.99, stock: 12,
+      imageUrl: "https://placehold.co/300x300?text=Galaxy+S24",
+      slug: "samsung-galaxy-s24",
+      smartphones: true, destaques: true, brand: "Samsung",
+    },
+    {
+      name: "Samsung Galaxy A55",
+      description: "Smartphone intermediário Samsung",
+      price: 1999.99, stock: 20,
+      imageUrl: "https://placehold.co/300x300?text=Galaxy+A55",
+      slug: "samsung-galaxy-a55",
+      smartphones: true, promocoes: true, brand: "Samsung",
+    },
+    {
+      name: "Sony Xperia 1 VI",
+      description: "Smartphone Sony com câmera profissional",
+      price: 5999.99, stock: 6,
+      imageUrl: "https://placehold.co/300x300?text=Xperia+1+VI",
+      slug: "sony-xperia-1-vi",
+      smartphones: true, destaques: true, brand: "Sony",
+    },
+    {
+      name: "Sony Xperia 5 V",
+      description: "Smartphone Sony compacto premium",
+      price: 3999.99, stock: 8,
+      imageUrl: "https://placehold.co/300x300?text=Xperia+5+V",
+      slug: "sony-xperia-5-v",
+      smartphones: true, brand: "Sony",
+    },
+    {
+      name: "Samsung Galaxy Z Flip 5",
+      description: "Smartphone dobrável Samsung",
+      price: 4499.99, stock: 7,
+      imageUrl: "https://placehold.co/300x300?text=Z+Flip+5",
+      slug: "samsung-galaxy-z-flip5",
+      smartphones: true, promocoes: true, brand: "Samsung",
+    },
+
+    // Games - Sony e Logitech
+    {
+      name: "Controle DualSense PS5",
+      description: "Controle oficial PlayStation 5",
+      price: 499.99, stock: 15,
+      imageUrl: "https://placehold.co/300x300?text=DualSense",
+      slug: "controle-dualsense-ps5",
+      games: true, destaques: true, brand: "Sony",
+    },
+    {
+      name: "PlayStation 5 Slim",
+      description: "Console PlayStation 5 versão Slim",
+      price: 3999.99, stock: 8,
+      imageUrl: "https://placehold.co/300x300?text=PS5+Slim",
+      slug: "playstation-5-slim",
+      games: true, destaques: true, brand: "Sony",
+    },
+    {
+      name: "Headset Sony Pulse 3D",
+      description: "Headset oficial PlayStation com áudio 3D",
+      price: 599.99, stock: 12,
+      imageUrl: "https://placehold.co/300x300?text=Pulse+3D",
+      slug: "headset-sony-pulse-3d",
+      games: true, brand: "Sony",
+    },
+    {
+      name: "Xbox Series Controller",
+      description: "Controle oficial Xbox Series",
+      price: 399.99, stock: 18,
+      imageUrl: "https://placehold.co/300x300?text=Xbox+Controller",
+      slug: "xbox-series-controller",
+      games: true, brand: "AMD",
+    },
+    {
+      name: "Volante Logitech G29",
+      description: "Volante gamer para PS e PC",
+      price: 1299.99, stock: 6,
+      imageUrl: "https://placehold.co/300x300?text=G29",
+      slug: "volante-logitech-g29",
+      games: true, promocoes: true, brand: "Logitech",
+    },
+    {
+      name: "Controle Sony DualSense Edge",
+      description: "Controle PS5 versão pro com botões extras",
+      price: 999.99, stock: 5,
+      imageUrl: "https://placehold.co/300x300?text=DualSense+Edge",
+      slug: "controle-dualsense-edge",
+      games: true, promocoes: true, brand: "Sony",
+    },
+
+    // Diversos - variadas
+    {
+      name: "Cabo USB-C 2m Samsung",
+      description: "Cabo USB-C de alta qualidade",
+      price: 49.99, stock: 50,
+      imageUrl: "https://placehold.co/300x300?text=Cabo+USB-C",
+      slug: "cabo-usb-c-2m",
+      diversos: true, brand: "Samsung",
+    },
+    {
+      name: "Suporte para Monitor",
+      description: "Suporte articulado para monitor",
+      price: 189.99, stock: 22,
+      imageUrl: "https://placehold.co/300x300?text=Suporte+Monitor",
+      slug: "suporte-monitor",
+      diversos: true, promocoes: true, brand: "Logitech",
+    },
+    {
+      name: "Hub USB-C 7 em 1",
+      description: "Hub USB-C com HDMI, USB e SD card",
+      price: 149.99, stock: 35,
+      imageUrl: "https://placehold.co/300x300?text=Hub+USB-C",
+      slug: "hub-usb-c-7em1",
+      diversos: true, brand: "Samsung",
+    },
+    {
+      name: "Carregador Sony 65W USB-C",
+      description: "Carregador rápido 65W",
+      price: 199.99, stock: 28,
+      imageUrl: "https://placehold.co/300x300?text=Carregador+65W",
+      slug: "carregador-sony-65w",
+      diversos: true, destaques: true, brand: "Sony",
+    },
+    {
+      name: "Suporte Gamer para Headset Logitech",
+      description: "Suporte de mesa para headset",
+      price: 89.99, stock: 40,
+      imageUrl: "https://placehold.co/300x300?text=Suporte+Headset",
+      slug: "suporte-headset-logitech",
+      diversos: true, brand: "Logitech",
+    },
+    {
+      name: "Webcam Sony 4K",
+      description: "Webcam 4K para streaming e reuniões",
+      price: 799.99, stock: 15,
+      imageUrl: "https://placehold.co/300x300?text=Webcam+4K",
+      slug: "webcam-sony-4k",
+      diversos: true, promocoes: true, brand: "Sony",
+    },
+    // Novidades
+{
+  name: "Monitor Samsung Odyssey G7 32\"",
+  description: "Monitor gamer curvo 240Hz QHD",
+  price: 3299.99, stock: 8,
+  imageUrl: "https://placehold.co/300x300?text=Odyssey+G7",
+  slug: "monitor-samsung-odyssey-g7",
+  novidades: true, destaques: true, hardware: true, brand: "Samsung",
+},
+{
+  name: "SSD Samsung 990 Pro 2TB",
+  description: "SSD NVMe gen 4 ultraveloz",
+  price: 899.99, stock: 12,
+  imageUrl: "https://placehold.co/300x300?text=990+Pro",
+  slug: "ssd-samsung-990-pro-2tb",
+  novidades: true, hardware: true, brand: "Samsung",
+},
+{
+  name: "Logitech MX Master 3S",
+  description: "Mouse sem fio para produtividade",
+  price: 599.99, stock: 15,
+  imageUrl: "https://placehold.co/300x300?text=MX+Master+3S",
+  slug: "mouse-logitech-mx-master-3s",
+  novidades: true, perifericos: true, brand: "Logitech",
+},
+{
+  name: "Sony WF-1000XM5",
+  description: "Fone in-ear com cancelamento de ruído",
+  price: 1499.99, stock: 10,
+  imageUrl: "https://placehold.co/300x300?text=WF1000XM5",
+  slug: "fone-sony-wf-1000xm5",
+  novidades: true, diversos: true, brand: "Sony",
+},
+{
+  name: "Samsung Galaxy S24 FE",
+  description: "Versão Fan Edition do Galaxy S24",
+  price: 3299.99, stock: 14,
+  imageUrl: "https://placehold.co/300x300?text=S24+FE",
+  slug: "samsung-galaxy-s24-fe",
+  novidades: true, smartphones: true, brand: "Samsung",
+},
+{
+  name: "AMD Radeon RX 7900 XTX",
+  description: "Placa de vídeo topo de linha AMD",
+  price: 5999.99, stock: 4,
+  imageUrl: "https://placehold.co/300x300?text=RX+7900+XTX",
+  slug: "amd-radeon-rx-7900-xtx",
+  novidades: true, hardware: true, brand: "AMD",
+},  
+  ];
+
+  for (const product of products) {
+    await prisma.product.upsert({
+      where: { slug: product.slug },
+      update: { brand: product.brand },
+      create: product,
+    });
+  }
+
+  console.log("✅ Banco populado com sucesso!");
+}
+
+main()
+  .catch(console.error)
+  .finally(() => prisma.$disconnect());

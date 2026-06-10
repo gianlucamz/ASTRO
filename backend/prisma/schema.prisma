@@ -39,9 +39,11 @@ model Product {
   stock       Int     @default(0)
   imageUrl    String?
   slug        String  @unique
+  brand       String?
 
   destaques    Boolean @default(false)
   promocoes    Boolean @default(false)
+  novidades    Boolean @default(false)
   hardware     Boolean @default(false)
   perifericos  Boolean @default(false)
   computadores Boolean @default(false)

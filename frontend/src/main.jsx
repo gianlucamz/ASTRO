@@ -18,6 +18,8 @@ import AdminRoute from "./components/AdminRoute";
 import EditProduct from "./pages/EditProduct";
 import SearchResults from "./pages/SearchResults";
 import Account from "./pages/Account";
+import CategoryPage from "./pages/CategoryPage";
+import ExplorePage from "./pages/ExplorePage";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -32,6 +34,22 @@ createRoot(document.getElementById("root")).render(
             element={
               <MainLayout>
                 <Home />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/categoria/:slug"
+            element={
+              <MainLayout>
+                <CategoryPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/explorar/:slug"
+            element={
+              <MainLayout>
+                <ExplorePage />
               </MainLayout>
             }
           />

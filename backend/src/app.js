@@ -13,7 +13,7 @@ import wishlistRoutes from "./routes/wishlistRoutes.js";
 const app = express();
 app.use(
   cors({
-    origin: "https://astro-tech.up.railway.app",
+    origin: ["https://astro-tech.up.railway.app", "http://localhost:5173"],
     credentials: true,
   }),
 );
