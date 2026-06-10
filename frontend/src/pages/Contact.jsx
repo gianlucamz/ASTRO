@@ -157,8 +157,7 @@ export default function Contato() {
           </div>
         </div>
       </section>
-      // substitui a seção FAQ e o componente Faq inteiro
-      {/* FAQ */}
+      
       <section className="bg-gray-50 border-t border-gray-200 py-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">Perguntas frequentes</h2>
