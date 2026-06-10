@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { CepProvider } from "./context/CepContext";
 import "./index.css";
 
 import MainLayout from "./layouts/MainLayout";
@@ -26,159 +27,161 @@ import ScrollToTop from "./components/ScrollToTop";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MainLayout>
-                <Home />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/categoria/:slug"
-            element={
-              <MainLayout>
-                <CategoryPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/explorar/:slug"
-            element={
-              <MainLayout>
-                <ExplorePage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <AltLayout>
-                <Cart />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/carrinho"
-            element={
-              <AltLayout>
-                <Cart />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/product"
-            element={
-              <MainLayout>
-                <Buycard />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/produto"
-            element={
-              <MainLayout>
-                <Buycard />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/product/:slug"
-            element={
-              <MainLayout>
-                <Buycard />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/admin/produto/editar/:id"
-            element={
-              <AdminRoute>
-                <AltLayout>
-                  <EditProduct />
-                </AltLayout>
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/desejos"
-            element={
-              <AltLayout>
-                <WishList />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/wishlist"
-            element={
-              <AltLayout>
-                <WishList />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/contato"
-            element={
-              <AltLayout>
-                <Contact />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <AltLayout>
-                <Contact />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <AltLayout>
-                <About />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/sobrenos"
-            element={
-              <AltLayout>
-                <About />
-              </AltLayout>
-            }
-          />
-          <Route
-            path="/admin/produto"
-            element={
-              <AdminRoute>
+      <CepProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route
+              path="/"
+              element={
                 <MainLayout>
-                  <AddProduct />
+                  <Home />
                 </MainLayout>
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/busca"
-            element={
-              <MainLayout>
-                <SearchResults />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/minha-conta"
-            element={
-              <AltLayout>
-                <Account />
-              </AltLayout>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+              }
+            />
+            <Route
+              path="/categoria/:slug"
+              element={
+                <MainLayout>
+                  <CategoryPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/explorar/:slug"
+              element={
+                <MainLayout>
+                  <ExplorePage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <AltLayout>
+                  <Cart />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/carrinho"
+              element={
+                <AltLayout>
+                  <Cart />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/product"
+              element={
+                <MainLayout>
+                  <Buycard />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/produto"
+              element={
+                <MainLayout>
+                  <Buycard />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/product/:slug"
+              element={
+                <MainLayout>
+                  <Buycard />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/admin/produto/editar/:id"
+              element={
+                <AdminRoute>
+                  <AltLayout>
+                    <EditProduct />
+                  </AltLayout>
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/desejos"
+              element={
+                <AltLayout>
+                  <WishList />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <AltLayout>
+                  <WishList />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/contato"
+              element={
+                <AltLayout>
+                  <Contact />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <AltLayout>
+                  <Contact />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <AltLayout>
+                  <About />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/sobrenos"
+              element={
+                <AltLayout>
+                  <About />
+                </AltLayout>
+              }
+            />
+            <Route
+              path="/admin/produto"
+              element={
+                <AdminRoute>
+                  <MainLayout>
+                    <AddProduct />
+                  </MainLayout>
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/busca"
+              element={
+                <MainLayout>
+                  <SearchResults />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/minha-conta"
+              element={
+                <AltLayout>
+                  <Account />
+                </AltLayout>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </CepProvider>
     </AuthProvider>
   </StrictMode>,
 );

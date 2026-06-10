@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useCep } from "../context/CepContext";
 
 import logo from "../assets/astroLogoHeader.png";
 import title from "../assets/astroTitle.png";
@@ -24,10 +25,7 @@ export default function Header() {
   // CEP
   const [showCepModal, setShowCepModal] = useState(false);
   const [cepInput, setCepInput] = useState("");
-  const [cepInfo, setCepInfo] = useState(() => {
-    const saved = localStorage.getItem("astro_cep");
-    return saved ? JSON.parse(saved) : null;
-  });
+  const { cepInfo, salvarCep } = useCep();
   const [cepError, setCepError] = useState("");
   const [cepLoading, setCepLoading] = useState(false);
   const [cepFound, setCepFound] = useState(null);
@@ -78,9 +76,6 @@ export default function Header() {
   }, []);
 
   function handleLogoutConfirmed() {
-    localStorage.removeItem("astro_cep");
-    setCepInfo(null);
-
     logout();
 
     setShowLogoutConfirm(false);
@@ -121,8 +116,7 @@ export default function Header() {
       cidade: cepFound.localidade,
       uf: cepFound.uf,
     };
-    setCepInfo(info);
-    localStorage.setItem("astro_cep", JSON.stringify(info));
+    salvarCep(info);
 
     if (isAuthenticated) {
       try {
@@ -145,6 +139,10 @@ export default function Header() {
   }
 
   function handleAbrirCep() {
+    if (!isAuthenticated) {
+      setShowAuth(true);
+      return;
+    }
     setShowCepModal(true);
     setCepInput("");
     setCepFound(null);
